@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kOMA Network Manager — Columbia Foundry</title>
+    <meta name="description" content="Your network at a glance: live statistics, DNS switching, and Wi-Fi controls in one native KDE Plasma panel widget.">
+    <meta name="theme-color" content="#b67a2a">
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <link rel="canonical" href="https://columbiafoundry.com/products/koma-network-manager.html">
+    <meta property="og:title" content="kOMA Network Manager — Columbia Foundry">
+    <meta property="og:description" content="Live network statistics, DNS switching, and Wi-Fi controls from your Plasma panel.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://columbiafoundry.com/products/koma-network-manager.html">
+    <meta property="og:image" content="https://columbiafoundry.com/products/images/koma-network-manager.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="kOMA Network Manager — Columbia Foundry">
+    <meta name="twitter:description" content="Live network statistics, DNS switching, and Wi-Fi controls from your Plasma panel.">
+    <meta name="twitter:image" content="https://columbiafoundry.com/products/images/koma-network-manager.png">
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #070707;
+            --panel: #101010;
+            --gold: #d59a3a;
+            --gold-bright: #f4cc79;
+            --text: #f4ead7;
+            --muted: #c4b08c;
+            --line: rgba(213, 154, 58, 0.28);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 32px 18px;
+            background: radial-gradient(circle at top, rgba(255, 166, 0, 0.14), transparent 32%),
+                radial-gradient(circle at bottom, rgba(213, 154, 58, 0.08), transparent 28%),
+                linear-gradient(180deg, #040404, #090909 45%, #050505);
+            color: var(--text);
+            font-family: Georgia, "Times New Roman", serif;
+            line-height: 1.7;
+        }
+        .page-frame {
+            max-width: 1080px;
+            margin: auto;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(18, 18, 18, 0.96), rgba(10, 10, 10, 0.98));
+            box-shadow: 0 0 0 2px rgba(90, 60, 20, 0.18), 0 28px 80px rgba(0, 0, 0, 0.55);
+        }
+        a { color: var(--gold-bright); text-underline-offset: 4px; }
+        a:hover { color: #fff4d7; }
+        a:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 5px; }
+        .brand { display: inline-block; margin: 24px 32px 0; text-decoration: none; letter-spacing: 0.08em; }
+        .hero { padding: 36px 36px 40px; text-align: center; }
+        .crest-line { width: min(420px, 80%); height: 2px; margin: 0 auto 28px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+        .product-icon { display: block; width: min(280px, 75%); height: auto; margin: 0 auto; }
+        .eyebrow { color: var(--muted); font: 0.8rem/1.5 system-ui, sans-serif; letter-spacing: 0.12em; text-transform: uppercase; margin: 18px 0 8px; }
+        h1 { color: var(--gold-bright); font-size: clamp(2.5rem, 7vw, 4.5rem); line-height: 1.1; margin: 0 0 18px; }
+        .summary { max-width: 710px; margin: 0 auto; font-size: 1.18rem; }
+        .why { max-width: 710px; margin: 18px auto 0; color: var(--muted); }
+        .content { padding: 0 32px 36px; }
+        h2 { color: var(--gold-bright); font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 18px; }
+        .capabilities { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        .panel { padding: 22px; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(30, 20, 10, 0.42), rgba(12, 12, 12, 0.88)); }
+        h3 { margin: 0 0 8px; color: var(--gold-bright); font-size: 1.12rem; }
+        p { margin: 0; }
+        .gallery { margin-top: 36px; }
+        .screenshots { max-width: 440px; margin: auto; }
+        .network-use { max-width: 710px; margin: 22px auto 0; color: var(--muted); }
+        figure { margin: 0; min-width: 0; }
+        figure a { display: block; border: 1px solid var(--line); }
+        figure img { display: block; width: 100%; height: auto; }
+        figcaption { padding-top: 10px; color: var(--muted); font-size: 0.9rem; }
+        .source { margin-top: 36px; padding: 28px; border: 1px solid var(--line); text-align: center; background: var(--panel); }
+        .source p { max-width: 640px; margin: auto; color: var(--muted); }
+        .button { display: inline-block; margin-top: 20px; padding: 10px 22px; border: 1px solid var(--gold); background: rgba(213, 154, 58, 0.1); text-decoration: none; }
+        .requirements { margin-top: 14px !important; font-size: 0.88rem; }
+        footer { padding: 0 24px 28px; text-align: center; color: var(--muted); font-size: 0.85rem; }
+        footer p + p { margin-top: 8px; }
+        @media (max-width: 700px) {
+            body { padding: 16px 10px; }
+            .brand { margin: 20px 20px 0; }
+            .hero { padding: 30px 20px; }
+            .content { padding: 0 20px 28px; }
+            .capabilities, .screenshots { grid-template-columns: 1fr; }
+            .screenshots { max-width: 550px; margin: auto; gap: 24px; }
+            .source { padding: 22px 18px; }
+        }
+    </style>
+</head>
+<body>
+    <main class="page-frame">
+        <a class="brand" href="../index.html">← Columbia Foundry</a>
+        <header class="hero">
+            <div class="crest-line" aria-hidden="true"></div>
+            <img class="product-icon" src="images/koma.svg" alt="kOMA logo">
+            <p class="eyebrow">KDE Plasma 6 · Free &amp; open source</p>
+            <h1>kOMA Network Manager</h1>
+            <p class="summary">Your network at a glance. Check your connection, watch live traffic, switch DNS providers, and manage Wi-Fi—all from your Plasma panel.</p>
+            <p class="why">I made kOMA Network Manager because I wanted connection details and everyday network controls together, without opening several tools. Inspired by <a href="https://omarchy.org">Omarchy</a>, it brings that convenience to KDE in a widget that follows Plasma’s look and feel.</p>
+        </header>
+        <div class="content">
+            <section aria-labelledby="capabilities-title">
+                <h2 id="capabilities-title">What it can do</h2>
+                <div class="capabilities">
+                    <article class="panel">
+                        <h3>See your connection</h3>
+                        <p>Find your Ethernet link speed or Wi-Fi network name, IP address, and gateway in one place. The panel icon follows your connection type and wireless signal.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Watch live network stats</h3>
+                        <p>See ping, packet loss, receiving and sending rates, and downloaded and uploaded totals while the popup is open.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Check download and upload speed</h3>
+                        <p>Sample download and upload speeds through Cloudflare’s speed-test service. Pause samples with the header’s speedometer button.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Switch DNS providers</h3>
+                        <p>Choose DHCP, Cloudflare, Google, or your own DNS servers. Changes apply to Ethernet and Wi-Fi connection profiles through NetworkManager.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Manage Wi-Fi</h3>
+                        <p>Browse known and nearby networks, connect or disconnect, forget a saved network, or turn Wi-Fi on and off. KDE’s own prompt handles passwords.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Fit your Plasma desktop</h3>
+                        <p>The widget uses your Plasma style, color scheme, and icons. The bundled komanet command also exposes connection details and controls from the terminal.</p>
+                    </article>
+                </div>
+            </section>
+            <section class="gallery" aria-labelledby="gallery-title">
+                <h2 id="gallery-title">Inside the widget</h2>
+                <div class="screenshots">
+                    <figure>
+                        <a href="images/koma-network-manager.png" aria-label="View the Network Manager screenshot at full size"><img src="images/koma-network-manager.png" width="440" height="390" loading="lazy" alt="Network Manager popup showing Ethernet connection statistics, download and upload speeds, and DNS provider buttons"></a>
+                        <figcaption>Connection details, live statistics, and DNS controls in one popup.</figcaption>
+                    </figure>
+                </div>
+                <p class="network-use">Opening the popup starts ping probes and repeated speed samples, which use your connection. Pause speed tests from the header; closing the popup stops further samples. With the popup closed, the widget only reads local connection state.</p>
+            </section>
+            <section class="source" aria-labelledby="source-title">
+                <h2 id="source-title">Get kOMA Network Manager</h2>
+                <p>Free, open source, and MIT licensed. Find the source, installation instructions, and downloadable Plasma widget on GitHub.</p>
+                <a class="button" href="https://github.com/gregoftheweb/kOMA-NetworkManager">View kOMA Network Manager on GitHub →</a>
+                <p class="requirements">Requires KDE Plasma 6, NetworkManager, and Python 3.11 or newer. See the repository for full requirements and DNS permissions.</p>
+            </section>
+        </div>
+        <footer>
+            <p><a href="../privacy/">Privacy Policy</a> · <a href="../terms/">Terms of Service</a></p>
+            <p>© 2026 Columbia Foundry. All rights reserved.</p>
+        </footer>
+    </main>
+</body>
+</html>
