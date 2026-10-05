@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kOMA Workspace Indicator — Columbia Foundry</title>
+    <meta name="description" content="A compact KDE Plasma 6 workspace indicator with desktop switching, application icons, and a clean separator view.">
+    <meta name="theme-color" content="#b67a2a">
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <link rel="canonical" href="https://columbiafoundry.com/products/koma-workspace-indicator.html">
+    <meta property="og:title" content="kOMA Workspace Indicator — Columbia Foundry">
+    <meta property="og:description" content="Desktop switching, application icons, and compact workspace controls from your Plasma panel.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://columbiafoundry.com/products/koma-workspace-indicator.html">
+    <meta property="og:image" content="https://columbiafoundry.com/products/images/koma.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="kOMA Workspace Indicator — Columbia Foundry">
+    <meta name="twitter:description" content="Desktop switching, application icons, and compact workspace controls from your Plasma panel.">
+    <meta name="twitter:image" content="https://columbiafoundry.com/products/images/koma.svg">
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #070707;
+            --panel: #101010;
+            --gold: #d59a3a;
+            --gold-bright: #f4cc79;
+            --text: #f4ead7;
+            --muted: #c4b08c;
+            --line: rgba(213, 154, 58, 0.28);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 32px 18px;
+            background: radial-gradient(circle at top, rgba(255, 166, 0, 0.14), transparent 32%),
+                radial-gradient(circle at bottom, rgba(213, 154, 58, 0.08), transparent 28%),
+                linear-gradient(180deg, #040404, #090909 45%, #050505);
+            color: var(--text);
+            font-family: Georgia, "Times New Roman", serif;
+            line-height: 1.7;
+        }
+        .page-frame {
+            max-width: 1080px;
+            margin: auto;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(18, 18, 18, 0.96), rgba(10, 10, 10, 0.98));
+            box-shadow: 0 0 0 2px rgba(90, 60, 20, 0.18), 0 28px 80px rgba(0, 0, 0, 0.55);
+        }
+        a { color: var(--gold-bright); text-underline-offset: 4px; }
+        a:hover { color: #fff4d7; }
+        a:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 5px; }
+        .brand { display: inline-block; margin: 24px 32px 0; text-decoration: none; letter-spacing: 0.08em; }
+        .hero { padding: 36px 36px 40px; text-align: center; }
+        .crest-line { width: min(420px, 80%); height: 2px; margin: 0 auto 28px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+        .product-icon { display: block; width: min(280px, 75%); height: auto; margin: 0 auto; }
+        .eyebrow { color: var(--muted); font: 0.8rem/1.5 system-ui, sans-serif; letter-spacing: 0.12em; text-transform: uppercase; margin: 18px 0 8px; }
+        h1 { color: var(--gold-bright); font-size: clamp(2.5rem, 7vw, 4.5rem); line-height: 1.1; margin: 0 0 18px; }
+        .summary { max-width: 710px; margin: 0 auto; font-size: 1.18rem; }
+        .why { max-width: 710px; margin: 18px auto 0; color: var(--muted); }
+        .content { padding: 0 32px 36px; }
+        h2 { color: var(--gold-bright); font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 18px; }
+        .capabilities { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        .panel { padding: 22px; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(30, 20, 10, 0.42), rgba(12, 12, 12, 0.88)); }
+        h3 { margin: 0 0 8px; color: var(--gold-bright); font-size: 1.12rem; }
+        p { margin: 0; }
+        .gallery { margin-top: 36px; }
+        .screenshots { max-width: 440px; margin: auto; }
+        .network-use { max-width: 710px; margin: 22px auto 0; color: var(--muted); }
+        figure { margin: 0; min-width: 0; }
+        figure a { display: block; border: 1px solid var(--line); }
+        figure img { display: block; width: 100%; height: auto; }
+        figcaption { padding-top: 10px; color: var(--muted); font-size: 0.9rem; }
+        .source { margin-top: 36px; padding: 28px; border: 1px solid var(--line); text-align: center; background: var(--panel); }
+        .source p { max-width: 640px; margin: auto; color: var(--muted); }
+        .button { display: inline-block; margin-top: 20px; padding: 10px 22px; border: 1px solid var(--gold); background: rgba(213, 154, 58, 0.1); text-decoration: none; }
+        .requirements { margin-top: 14px !important; font-size: 0.88rem; }
+        footer { padding: 0 24px 28px; text-align: center; color: var(--muted); font-size: 0.85rem; }
+        footer p + p { margin-top: 8px; }
+        @media (max-width: 700px) {
+            body { padding: 16px 10px; }
+            .brand { margin: 20px 20px 0; }
+            .hero { padding: 30px 20px; }
+            .content { padding: 0 20px 28px; }
+            .capabilities, .screenshots { grid-template-columns: 1fr; }
+            .screenshots { max-width: 550px; margin: auto; gap: 24px; }
+            .source { padding: 22px 18px; }
+        }
+    </style>
+</head>
+<body>
+    <main class="page-frame">
+        <a class="brand" href="../index.html">← Columbia Foundry</a>
+        <header class="hero">
+            <div class="crest-line" aria-hidden="true"></div>
+            <img class="product-icon" src="images/koma.svg" alt="kOMA logo">
+            <p class="eyebrow">KDE Plasma 6 · Free &amp; open source</p>
+            <h1>kOMA Workspace Indicator</h1>
+            <p class="summary">Keep your desktops close at hand. Switch workspaces, see which applications are open, and choose a compact panel view that fits your desktop.</p>
+            <p class="why">Part of kOMA, inspired by <a href="https://omarchy.org">Omarchy</a> and made for KDE Plasma. Built on Desktop Switcher by Sm1Tee, with kOMA appearance and behavior changes.</p>
+        </header>
+        <div class="content">
+            <section aria-labelledby="features-title">
+                <h2 id="features-title">Your workspaces, at a glance</h2>
+                <div class="capabilities">
+                    <article class="panel"><h3>Switch from the panel</h3><p>Click a workspace to switch to it, or scroll through your virtual desktops without leaving the panel.</p></article>
+                    <article class="panel"><h3>See your applications</h3><p>Show application icons with workspace numbers. Indicators refresh when windows move between desktops.</p></article>
+                    <article class="panel"><h3>Choose your look</h3><p>Use plain separators for a minimal view, or choose shapes, colors, and sizes in the appearance settings.</p></article>
+                    <article class="panel"><h3>Fit your panel</h3><p>Compact sizing works with horizontal and vertical panels. Use Plasma theme colors or choose your own.</p></article>
+                </div>
+            </section>
+            <section class="source" aria-labelledby="download-title">
+                <h2 id="download-title">Get kOMA Workspace Indicator</h2>
+                <p>Download version 0.2.0, then use Plasma’s widget manager to Install Widget From Local File. Select the downloaded .plasmoid and add kOMA Workspace Indicator to your panel.</p>
+                <a class="button" href="https://github.com/gregoftheweb/kOMA-Workspace-Indicator/releases/download/v0.2.0/koma-workspace-indicator-0.2.0.plasmoid">Download the widget →</a>
+                <a class="button" href="https://github.com/gregoftheweb/kOMA-Workspace-Indicator">Source &amp; support →</a>
+                <p class="requirements">Requires KDE Plasma 6. Existing kOMA installations retain the kde-desktop.workspaces plugin ID.</p>
+            </section>
+            <section class="source" aria-labelledby="credits-title">
+                <h2 id="credits-title">Built on Desktop Switcher</h2>
+                <p>Original development by Sm1Tee. kOMA modifications by Greg / Columbia Foundry add plain separators, numbers alongside icons, compact sizing, English defaults, and updates when windows move. We could not locate an upstream source repository; the original widget’s metadata declares GPL-2.0-or-later, which we preserve.</p>
+                <p class="requirements">An independently maintained derivative, licensed under <a href="https://github.com/gregoftheweb/kOMA-Workspace-Indicator/blob/main/LICENSE">GPL-2.0-or-later</a>. See the <a href="https://github.com/gregoftheweb/kOMA-Workspace-Indicator/blob/main/NOTICE.md">provenance and modification notice</a>.</p>
+            </section>
+        </div>
+        <footer>
+            <p><a href="../privacy/">Privacy Policy</a> · <a href="../terms/">Terms of Service</a></p>
+            <p>© 2026 Columbia Foundry.</p>
+        </footer>
+    </main>
+</body>
+</html>
