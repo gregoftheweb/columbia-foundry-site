@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kOMA Music Thing — Columbia Foundry</title>
+    <meta name="description" content="A compact MPD music player for KDE Plasma, with rmpc in the popup, a cava sound graph, and guided setup.">
+    <meta name="theme-color" content="#b67a2a">
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <link rel="canonical" href="https://columbiafoundry.com/products/koma-music-thing.html">
+    <meta property="og:title" content="kOMA Music Thing — Columbia Foundry">
+    <meta property="og:description" content="Play from your panel, browse your music with rmpc, and watch the sound with cava.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://columbiafoundry.com/products/koma-music-thing.html">
+    <meta property="og:image" content="https://columbiafoundry.com/products/images/koma-plugins-logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="kOMA Music Thing — Columbia Foundry">
+    <meta name="twitter:description" content="Play from your panel, browse your music with rmpc, and watch the sound with cava.">
+    <meta name="twitter:image" content="https://columbiafoundry.com/products/images/koma-plugins-logo.png">
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #070707;
+            --panel: #101010;
+            --gold: #d59a3a;
+            --gold-bright: #f4cc79;
+            --text: #f4ead7;
+            --muted: #c4b08c;
+            --line: rgba(213, 154, 58, 0.28);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 32px 18px;
+            background: radial-gradient(circle at top, rgba(255, 166, 0, 0.14), transparent 32%),
+                radial-gradient(circle at bottom, rgba(213, 154, 58, 0.08), transparent 28%),
+                linear-gradient(180deg, #040404, #090909 45%, #050505);
+            color: var(--text);
+            font-family: Georgia, "Times New Roman", serif;
+            line-height: 1.7;
+        }
+        .page-frame {
+            max-width: 1080px;
+            margin: auto;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(18, 18, 18, 0.96), rgba(10, 10, 10, 0.98));
+            box-shadow: 0 0 0 2px rgba(90, 60, 20, 0.18), 0 28px 80px rgba(0, 0, 0, 0.55);
+        }
+        a { color: var(--gold-bright); text-underline-offset: 4px; }
+        a:hover { color: #fff4d7; }
+        a:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 5px; }
+        .brand { display: inline-block; margin: 24px 32px 0; text-decoration: none; letter-spacing: 0.08em; }
+        .hero { padding: 36px 36px 40px; text-align: center; }
+        .crest-line { width: min(420px, 80%); height: 2px; margin: 0 auto 28px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+        .product-icon { display: block; width: min(280px, 75%); height: auto; margin: 0 auto; }
+        .eyebrow { color: var(--muted); font: 0.8rem/1.5 system-ui, sans-serif; letter-spacing: 0.12em; text-transform: uppercase; margin: 18px 0 8px; }
+        h1 { color: var(--gold-bright); font-size: clamp(2.5rem, 7vw, 4.5rem); line-height: 1.1; margin: 0 0 18px; }
+        .summary { max-width: 710px; margin: 0 auto; font-size: 1.18rem; }
+        .why { max-width: 710px; margin: 18px auto 0; color: var(--muted); }
+        .content { padding: 0 32px 36px; }
+        h2 { color: var(--gold-bright); font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 18px; }
+        .capabilities { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        .panel { padding: 22px; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(30, 20, 10, 0.42), rgba(12, 12, 12, 0.88)); }
+        h3 { margin: 0 0 8px; color: var(--gold-bright); font-size: 1.12rem; }
+        p { margin: 0; }
+        .gallery { margin-top: 36px; }
+        .screenshots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+        figure { margin: 0; min-width: 0; }
+        figure a { display: block; border: 1px solid var(--line); }
+        figure img { display: block; width: 100%; height: auto; }
+        figcaption { padding-top: 10px; color: var(--muted); font-size: 0.9rem; }
+        .setup-guide { margin-top: 36px; }
+        .setup-guide > p { color: var(--muted); margin-bottom: 20px; }
+        .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+        .guide-heading { margin: 28px 0 12px; }
+        details { padding: 16px 20px; border: 1px solid var(--line); margin-top: 12px; background: var(--panel); }
+        summary { cursor: pointer; color: var(--gold-bright); }
+        summary:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 5px; }
+        details p { margin-top: 16px; }
+        pre { padding: 16px; background: #070707; border: 1px solid var(--line); overflow-x: auto; }
+        code { font: 0.85rem/1.6 ui-monospace, monospace; }
+        .source { margin-top: 36px; padding: 28px; border: 1px solid var(--line); text-align: center; background: var(--panel); }
+        .source p { max-width: 640px; margin: auto; color: var(--muted); }
+        .button { display: inline-block; margin-top: 20px; padding: 10px 22px; border: 1px solid var(--gold); background: rgba(213, 154, 58, 0.1); text-decoration: none; }
+        .requirements { margin-top: 14px !important; font-size: 0.88rem; }
+        footer { padding: 0 24px 28px; text-align: center; color: var(--muted); font-size: 0.85rem; }
+        footer p + p { margin-top: 8px; }
+        @media (max-width: 700px) {
+            body { padding: 16px 10px; }
+            .brand { margin: 20px 20px 0; }
+            .hero { padding: 30px 20px; }
+            .content { padding: 0 20px 28px; }
+            .capabilities, .screenshots, .steps { grid-template-columns: 1fr; }
+            .screenshots { max-width: 550px; margin: auto; gap: 24px; }
+            .source { padding: 22px 18px; }
+        }
+    </style>
+</head>
+<body>
+    <main class="page-frame">
+        <a class="brand" href="../index.html">← Columbia Foundry</a>
+        <header class="hero">
+            <div class="crest-line" aria-hidden="true"></div>
+            <img class="product-icon" src="images/koma.svg" alt="kOMA logo">
+            <p class="eyebrow">KDE Plasma 6 · Free &amp; open source</p>
+            <h1>kOMA Music Thing</h1>
+            <p class="summary">A little music player with a lot inside. Play and skip from your panel, expand into rmpc to browse your library, and watch your music move with cava’s live sound graph.</p>
+            <p class="why">I made kOMA Music Thing to keep music close at hand without giving up the power of a full music browser. Inspired by <a href="https://omarchy.org">Omarchy</a>, it brings MPD, rmpc, and cava together in a widget that feels at home in KDE Plasma.</p>
+        </header>
+        <div class="content">
+            <section aria-labelledby="capabilities-title">
+                <h2 id="capabilities-title">What it can do</h2>
+                <div class="capabilities">
+                    <article class="panel">
+                        <h3>Play from the panel</h3>
+                        <p>See what’s playing, pause, and skip without leaving your desktop. Middle-click the panel icon to play or pause; scroll to skip tracks.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Browse with rmpc</h3>
+                        <p>Expand the popup into a real terminal running rmpc. Browse your music and build the queue, then collapse back to the mini player without losing your place.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Watch the sound</h3>
+                        <p>cava adds a dynamic sound graph inside the expanded player. The panel gets its own rmpc configuration, leaving your standalone settings and album art intact.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Get set up</h3>
+                        <p>The Setup panel walks you through installing MPD, rmpc, and cava, choosing your music folder, creating configurations, and scanning your library.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Keep your existing setup</h3>
+                        <p>Existing MPD and rmpc settings are preserved. The player also supports an already configured MPD server, including the server address used by rmpc.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Start when you need it</h3>
+                        <p>Start MPD from the widget when it is not running. If the widget started it, quitting rmpc stops it again; a server you started yourself is left running.</p>
+                    </article>
+                </div>
+            </section>
+            <section class="setup-guide" aria-labelledby="setup-title">
+                <h2 id="setup-title">From a fresh install to your first song</h2>
+                <p>Music Thing uses three tools: <a href="https://www.musicpd.org/">MPD</a> plays your music, <a href="https://rmpc.mierak.dev/">rmpc</a> browses it, and <a href="https://github.com/karlstav/cava">cava</a> draws the sound graph. The Qt 6 QMLTermWidget component puts rmpc inside the popup.</p>
+                <div class="steps">
+                    <article class="panel"><h3>1. Install the tools</h3><p>Open the widget’s gear button. On Arch-based systems, click the MPD, rmpc, and cava install buttons. The cava installer includes the embedded terminal. A terminal shows the package transaction and requests your password; close it when finished.</p></article>
+                    <article class="panel"><h3>2. Choose and configure</h3><p>Browse to your music folder, then click Configure MPD and Configure rmpc. New setups use local desktop audio. Existing configurations are kept, so you can also use a player you already configured.</p></article>
+                    <article class="panel"><h3>3. Scan and listen</h3><p>Click Start MPD and scan music, then Open music browser. A large library may take a little time to appear. Choose tracks in rmpc and start playback to see cava’s graph move.</p></article>
+                </div>
+                <h3 class="guide-heading">Installing on other distributions</h3>
+                <p>Automatic package installation currently supports Arch-based systems. Elsewhere, install the dependencies manually and use the same Setup panel for configuration. Commands below install MPD and cava; rmpc and the Qt 6 terminal may need a separate installation.</p>
+                <details><summary>Debian and Ubuntu</summary>
+                    <pre><code>sudo apt update
+sudo apt install mpd cava</code></pre>
+                    <p>Package versions vary by release. Install rmpc from your repositories if available, or follow its <a href="https://rmpc.mierak.dev/installation/">official installation guide</a> for a Linux release binary or a Rust build. The <a href="https://mpd.readthedocs.io/en/stable/user.html">MPD manual</a> covers Debian and Ubuntu installation.</p>
+                </details>
+                <details><summary>Fedora</summary>
+                    <pre><code>sudo dnf install mpd cava</code></pre>
+                    <p>Install rmpc from your enabled repositories if available, or use its <a href="https://rmpc.mierak.dev/installation/">official installation guide</a>. Fedora maintains package information for <a href="https://packages.fedoraproject.org/pkgs/mpd/mpd/">MPD</a> and <a href="https://packages.fedoraproject.org/pkgs/cava/">cava</a>.</p>
+                </details>
+                <details><summary>Other Linux distributions</summary>
+                    <p>Install MPD and cava with your distribution’s package manager, then install rmpc using its <a href="https://rmpc.mierak.dev/installation/">upstream instructions</a>. Music Thing requires Python 3.11 or newer and a systemd user session for starting local MPD.</p>
+                </details>
+                <details><summary>Embedded terminal and sound graph</summary>
+                    <p>For rmpc inside the popup, install a <strong>Qt 6 build of QMLTermWidget</strong>; package names vary. A Qt 5 build does not provide the component Plasma 6 needs. Without that component, Music Thing offers to open rmpc in a separate terminal.</p>
+                    <p>Install cava for the sound graph. The embedded player prepares a separate rmpc configuration with the visualizer; your standalone rmpc configuration is preserved. If the graph stays flat, start playback and check your desktop audio output.</p>
+                </details>
+                <details><summary>MPD installed, but the Start button cannot find its user service</summary>
+                    <p>Some distributions provide a system service instead of an MPD user service. Check:</p>
+                    <pre><code>systemctl --user cat mpd.service</code></pre>
+                    <p>If there is no user unit, and you are creating a new local setup with the default configuration location, create <code>~/.config/systemd/user/mpd.service</code> with the following contents. Keep an existing unit if one is present.</p>
+                    <pre><code>[Unit]
+Description=Music Player Daemon for my desktop
+After=sound.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/mpd --no-daemon %h/.config/mpd/mpd.conf</code></pre>
+                    <p>Then reload the user service definitions:</p>
+                    <pre><code>systemctl --user daemon-reload</code></pre>
+                    <p>Return to Setup to configure MPD and scan your music. You do not need to enable it at login. If a distribution-provided MPD server already runs on port 6600, use that existing server or decide which instance you want before starting another one. Music Thing does not stop system services or replace their settings.</p>
+                </details>
+                <details><summary>I already have MPD or rmpc configured</summary>
+                    <p>Keep your existing setup. Music Thing reads MPD_HOST and MPD_PORT first, then the address in your rmpc configuration, then localhost:6600. Existing MPD and rmpc files are never overwritten by the setup buttons. For custom or remote servers, use the <a href="https://rmpc.mierak.dev/configuration/">rmpc configuration guide</a>.</p>
+                </details>
+            </section>
+            <section class="source" aria-labelledby="source-title">
+                <h2 id="source-title">Get kOMA Music Thing</h2>
+                <p>Free, open source, and MIT licensed. The Music Thing source release is being prepared while its guided installer is tested. Explore the other kOMA projects on GitHub in the meantime.</p>
+                <a class="button" href="https://github.com/gregoftheweb?tab=repositories">Explore kOMA on GitHub →</a>
+                <p class="requirements">Requires KDE Plasma 6, Python 3.11+, MPD, and rmpc. Install cava for the graph and Qt 6 QMLTermWidget for the embedded browser.</p>
+            </section>
+        </div>
+        <footer>
+            <p><a href="../privacy/">Privacy Policy</a> · <a href="../terms/">Terms of Service</a></p>
+            <p>© 2026 Columbia Foundry. All rights reserved.</p>
+        </footer>
+    </main>
+</body>
+</html>
