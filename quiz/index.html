@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="theme-color" content="#1e6bae">
+    <meta name="description" content="Unofficial 40-question practice quiz based on the Washington Driver Guide.">
+    <title>Washington Driving Practice Test</title>
+    <style>
+        :root {
+            --bg: #f3f6f9;
+            --panel: #ffffff;
+            --text: #1f2a37;
+            --muted: #5b6878;
+            --line: #dde3ea;
+            --accent: #1e6bae;
+            --accent-dark: #124068;
+            --track: #dfe5ec;
+            --pass: #1b7f3b;
+            --pass-soft: #e7f6ec;
+            --fail: #c62828;
+            --fail-soft: #fdecec;
+            --warn: #8a5a00;
+            --warn-soft: #fff4dc;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        }
+
+        .wrap {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 16px 40px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: var(--panel);
+            border-bottom: 1px solid var(--line);
+            box-shadow: 0 2px 10px rgba(31, 42, 55, 0.06);
+        }
+
+        header .wrap {
+            padding-top: 16px;
+            padding-bottom: 14px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            line-height: 1.25;
+        }
+
+        .disclaimer {
+            margin: 4px 0 14px;
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        .progress-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 6px;
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .progress-row .muted {
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .track {
+            height: 10px;
+            border-radius: 999px;
+            background: var(--track);
+            overflow: hidden;
+        }
+
+        .bar {
+            height: 100%;
+            width: 0;
+            background: var(--accent);
+            border-radius: inherit;
+            transition: width 0.25s ease;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .spacer {
+            flex: 1;
+        }
+
+        button {
+            font: inherit;
+            font-weight: 600;
+            padding: 9px 18px;
+            border-radius: 8px;
+            border: 2px solid var(--accent);
+            background: var(--accent);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover:not(:disabled) {
+            background: var(--accent-dark);
+            border-color: var(--accent-dark);
+        }
+
+        button.secondary {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        button.secondary:hover:not(:disabled) {
+            background: #e8f1fa;
+            color: var(--accent-dark);
+        }
+
+        button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .edit-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--muted);
+            cursor: pointer;
+        }
+
+        .edit-toggle input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--warn);
+        }
+
+        .edit-toggle.on {
+            color: var(--warn);
+            font-weight: 600;
+        }
+
+        .edit-toggle.off {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .score {
+            margin-top: 14px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .score.pass {
+            background: var(--pass-soft);
+            color: var(--pass);
+        }
+
+        .score.fail {
+            background: var(--fail-soft);
+            color: var(--fail);
+        }
+
+        .score small {
+            display: block;
+            margin-top: 2px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .modified {
+            display: inline-block;
+            margin-left: 8px;
+            padding: 1px 8px;
+            border-radius: 999px;
+            background: var(--warn-soft);
+            color: var(--warn);
+            font-size: 0.75rem;
+            vertical-align: 3px;
+        }
+
+        .pane {
+            margin-top: 20px;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        iframe {
+            display: block;
+            width: 100%;
+            min-height: 420px;
+            border: 0;
+        }
+
+        footer {
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--accent);
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 520px) {
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            .controls button {
+                padding: 8px 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="wrap">
+            <h1>State of Washington Driving Test</h1>
+            <p class="disclaimer">Unofficial practice quiz based on the Washington Driver Guide. Not affiliated with the
+                Washington State Department of Licensing.</p>
+
+            <div class="progress-row">
+                <span id="progressLabel">Ready to begin</span>
+                <span class="muted" id="progressPct">0%</span>
+            </div>
+            <div class="track" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="100"
+                aria-valuenow="0" id="track">
+                <div class="bar" id="bar"></div>
+            </div>
+
+            <div class="controls">
+                <button id="startBtn">Start Quiz</button>
+                <button id="prevBtn" class="secondary" hidden>Previous</button>
+                <button id="nextBtn" hidden>Next</button>
+                <button id="finishBtn" hidden>Finish</button>
+                <button id="retakeBtn" hidden>Retake Quiz</button>
+                <span class="spacer"></span>
+                <label class="edit-toggle off" id="editLabel"
+                    title="Lets you go back and change answers. Can only be turned on once and marks your score as modified.">
+                    <input type="checkbox" id="editToggle" disabled>
+                    Allow editing answers
+                </label>
+            </div>
+
+            <div class="score" id="score" hidden></div>
+        </div>
+    </header>
+
+    <div class="wrap">
+        <div class="pane">
+            <iframe id="pane" src="pane.html" title="Question pane"></iframe>
+        </div>
+        <footer>
+            Study the official <a href="https://dol.wa.gov/media/pdf/4745/driver-guidepdf/download?inline"
+                rel="noopener" target="_blank">Washington Driver Guide</a> before your real knowledge test.
+        </footer>
+    </div>
+
+    <script src="questions.js"></script>
+    <script>
+        const QUIZ_LENGTH = 40;
+        const PASS_MARK = 32;
+
+        const frame = document.getElementById("pane");
+        const $ = (id) => document.getElementById(id);
+        const startBtn = $("startBtn");
+        const prevBtn = $("prevBtn");
+        const nextBtn = $("nextBtn");
+        const finishBtn = $("finishBtn");
+        const retakeBtn = $("retakeBtn");
+        const editToggle = $("editToggle");
+        const editLabel = $("editLabel");
+
+        // phase: "intro" | "quiz" | "done"
+        let state = null;
+        let paneReady = false;
+
+        function shuffle(list) {
+            const a = list.slice();
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        // Shuffle choices but keep "All/None of the above" style answers last,
+        // where they still make sense.
+        function shuffleQuestion(q) {
+            const order = q.choices.map((_, i) => i);
+            const pinned = order.filter((i) => /of the above/i.test(q.choices[i]));
+            const free = shuffle(order.filter((i) => !pinned.includes(i)));
+            const finalOrder = free.concat(pinned);
+            return {
+                question: q.question,
+                image: q.image ? SIGNS[q.image] : null,
+                choices: finalOrder.map((i) => q.choices[i]),
+                answer: finalOrder.indexOf(q.answer),
+                explanation: q.explanation,
+            };
+        }
+
+        function newState() {
+            return {
+                phase: "intro",
+                questions: shuffle(QUESTIONS).slice(0, QUIZ_LENGTH).map(shuffleQuestion),
+                answers: new Array(Math.min(QUIZ_LENGTH, QUESTIONS.length)).fill(null),
+                current: 0,
+                // Highest question index the user has reached; without editing,
+                // anything before it is locked.
+                reached: 0,
+                editMode: false,
+            };
+        }
+
+        function send(msg) {
+            if (!paneReady) return;
+            frame.contentWindow.postMessage(Object.assign({ source: "quiz-parent" }, msg), "*");
+        }
+
+        function answeredCount() {
+            return state.answers.filter((a) => a !== null).length;
+        }
+
+        function isLocked(i) {
+            return state.phase !== "quiz" || (!state.editMode && i < state.reached);
+        }
+
+        function renderPane() {
+            if (state.phase === "intro") {
+                send({
+                    type: "intro",
+                    heading: "40 questions · 32 correct to pass",
+                    points: [
+                        "Questions cover signs and signals, right-of-way, speed limits, school zones and buses, impaired driving, seat belts, parking, teen license rules and safe driving.",
+                        "40 questions are drawn at random from a larger bank, so every attempt is different. One question at a time. Pick an answer, then press Next. Your score is only shown at the end.",
+                        "Answers lock once you move on. If you need to go back, check \"Allow editing answers\" in the header. It can only be turned on once and your score will be marked Modified.",
+                        "When you finish, you'll get a full review showing what you missed and why.",
+                    ],
+                });
+            } else if (state.phase === "quiz") {
+                const q = state.questions[state.current];
+                send({
+                    type: "question",
+                    number: state.current + 1,
+                    total: state.questions.length,
+                    question: q.question,
+                    image: q.image,
+                    choices: q.choices,
+                    selected: state.answers[state.current],
+                    locked: isLocked(state.current),
+                });
+            } else {
+                send({
+                    type: "summary",
+                    items: state.questions.map((q, i) => Object.assign({ selected: state.answers[i] }, q)),
+                });
+            }
+        }
+
+        function renderHeader() {
+            const total = state.questions.length;
+            const done = answeredCount();
+            const pct = Math.round((done / total) * 100);
+            const last = state.current === total - 1;
+
+            if (state.phase === "intro") {
+                $("progressLabel").textContent = "Ready to begin";
+            } else if (state.phase === "quiz") {
+                $("progressLabel").textContent = "Question " + (state.current + 1) + " of " + total;
+            } else {
+                $("progressLabel").textContent = "Quiz complete";
+            }
+            $("progressPct").textContent = pct + "%";
+            $("bar").style.width = pct + "%";
+            $("track").setAttribute("aria-valuenow", pct);
+
+            const inQuiz = state.phase === "quiz";
+            startBtn.hidden = state.phase !== "intro";
+            prevBtn.hidden = !inQuiz;
+            nextBtn.hidden = !inQuiz || last;
+            finishBtn.hidden = !inQuiz || !last;
+            retakeBtn.hidden = state.phase !== "done";
+
+            prevBtn.disabled = !state.editMode || state.current === 0;
+            prevBtn.title = state.editMode ? "" : "Turn on editing to go back";
+            nextBtn.disabled = state.answers[state.current] === null;
+            finishBtn.disabled = done < total;
+
+            editToggle.checked = state.editMode;
+            editToggle.disabled = !inQuiz || state.editMode;
+            editLabel.classList.toggle("on", state.editMode);
+            editLabel.classList.toggle("off", editToggle.disabled && !state.editMode);
+
+            const score = $("score");
+            if (state.phase === "done") {
+                const right = state.questions.filter((q, i) => state.answers[i] === q.answer).length;
+                const passed = right >= PASS_MARK;
+                score.hidden = false;
+                score.className = "score " + (passed ? "pass" : "fail");
+                score.replaceChildren(
+                    document.createTextNode("You scored " + right + " / " + total + " (" + Math.round((right / total) * 100) + "%) — " + (passed ? "Pass" : "Not passed"))
+                );
+                if (state.editMode) {
+                    const tag = document.createElement("span");
+                    tag.className = "modified";
+                    tag.textContent = "Modified";
+                    tag.title = "Answers were edited after moving on";
+                    score.append(tag);
+                }
+                const sub = document.createElement("small");
+                sub.textContent = passed
+                    ? "You need " + PASS_MARK + " correct to pass. Review your answers below."
+                    : "You need " + PASS_MARK + " correct to pass. Review what you missed below.";
+                score.append(sub);
+            } else {
+                score.hidden = true;
+            }
+        }
+
+        function render() {
+            renderHeader();
+            renderPane();
+        }
+
+        function goTo(i) {
+            state.current = i;
+            state.reached = Math.max(state.reached, i);
+            render();
+            window.scrollTo({ top: 0 });
+        }
+
+        startBtn.addEventListener("click", () => {
+            state.phase = "quiz";
+            goTo(0);
+        });
+
+        nextBtn.addEventListener("click", () => {
+            if (state.answers[state.current] === null) return;
+            goTo(state.current + 1);
+        });
+
+        prevBtn.addEventListener("click", () => {
+            if (!state.editMode || state.current === 0) return;
+            goTo(state.current - 1);
+        });
+
+        finishBtn.addEventListener("click", () => {
+            if (answeredCount() < state.questions.length) return;
+            state.phase = "done";
+            render();
+            window.scrollTo({ top: 0 });
+        });
+
+        retakeBtn.addEventListener("click", () => {
+            state = newState();
+            render();
+        });
+
+        editToggle.addEventListener("change", () => {
+            if (!editToggle.checked || state.editMode || state.phase !== "quiz") return;
+            const ok = confirm(
+                "Turn on editing?\n\nYou'll be able to go back and change answers, but this can't be turned off for this attempt and your score will be marked Modified."
+            );
+            if (ok) state.editMode = true;
+            render();
+        });
+
+        window.addEventListener("message", (event) => {
+            if (event.source !== frame.contentWindow) return;
+            const msg = event.data || {};
+            if (msg.source !== "quiz-pane") return;
+
+            if (msg.type === "ready") {
+                paneReady = true;
+                renderPane();
+            } else if (msg.type === "height") {
+                frame.style.height = Math.max(420, Math.ceil(msg.height)) + "px";
+            } else if (msg.type === "select") {
+                const choice = Number(msg.choice);
+                const q = state.questions[state.current];
+                if (isLocked(state.current) || !(choice >= 0 && choice < q.choices.length)) return;
+                state.answers[state.current] = choice;
+                render();
+            }
+        });
+
+        state = newState();
+        renderHeader();
+    </script>
+</body>
+
+</html>
