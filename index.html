@@ -6,304 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <meta name="theme-color" content="#b67a2a">
+    <meta name="theme-color" content="#112c54">
 
     <meta property="og:title" content="Columbia Foundry">
-    <meta property="og:description" content="Forging software, games, and digital products.">
+    <meta property="og:description" content="American software, games, and digital products. Built in Seattle, Washington.">
     <meta property="og:image" content="https://columbiafoundry.com/columbia-foundry-logo.png">
     <meta property="og:url" content="https://columbiafoundry.com">
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Columbia Foundry">
-    <meta name="twitter:description" content="Forging software, games, and digital products.">
+    <meta name="twitter:description" content="American software, games, and digital products. Built in Seattle, Washington.">
     <meta name="twitter:image" content="https://columbiafoundry.com/columbia-foundry-logo.png">
 
-    <title>Columbia Foundry</title>
-    <style>
-        :root {
-            --bg: #070707;
-            --panel: #101010;
-            --panel-2: #17120d;
-            --gold: #d59a3a;
-            --gold-bright: #f4cc79;
-            --gold-deep: #8b5a18;
-            --ember: #ff8a00;
-            --ember-soft: rgba(255, 138, 0, 0.2);
-            --text: #f4ead7;
-            --muted: #c4b08c;
-            --line: rgba(213, 154, 58, 0.28);
-            --shadow: rgba(0, 0, 0, 0.55);
-        }
+    <meta name="description" content="Columbia Foundry is an American software house in Seattle, Washington. Explore our software, games, and open-source desktop tools.">
+    <title>Columbia Foundry — American Software</title>
 
-        * {
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            margin: 0;
-            min-height: 100%;
-            background:
-                radial-gradient(circle at top, rgba(255, 166, 0, 0.14), transparent 32%),
-                radial-gradient(circle at bottom, rgba(213, 154, 58, 0.08), transparent 28%),
-                linear-gradient(180deg, #040404 0%, #090909 45%, #050505 100%);
-            color: var(--text);
-            font-family: Georgia, "Times New Roman", serif;
-        }
-
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 32px 18px;
-        }
-
-        .page-frame {
-            width: min(100%, 980px);
-            border: 1px solid var(--line);
-            background:
-                linear-gradient(180deg, rgba(18, 18, 18, 0.96), rgba(10, 10, 10, 0.98)),
-                var(--panel);
-            box-shadow:
-                0 0 0 2px rgba(90, 60, 20, 0.18),
-                0 28px 80px var(--shadow),
-                inset 0 0 60px rgba(255, 166, 0, 0.03);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .page-frame::before,
-        .page-frame::after {
-            content: "";
-            position: absolute;
-            inset: 18px;
-            border: 1px solid rgba(244, 204, 121, 0.12);
-            pointer-events: none;
-        }
-
-        .page-frame::after {
-            inset: 30px;
-            border-color: rgba(213, 154, 58, 0.08);
-        }
-
-        .hero {
-            position: relative;
-            padding: 72px 28px 56px;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(135deg, transparent 0 24%, rgba(213, 154, 58, 0.06) 24% 26%, transparent 26% 74%, rgba(213, 154, 58, 0.05) 74% 76%, transparent 76%),
-                linear-gradient(0deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0));
-            pointer-events: none;
-        }
-
-        .crest-line {
-            width: min(420px, 78vw);
-            height: 2px;
-            margin: 0 auto 28px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            box-shadow: 0 0 18px rgba(244, 204, 121, 0.35);
-        }
-
-        .logo-wrap {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 22px;
-            border: 1px solid rgba(213, 154, 58, 0.22);
-            background: radial-gradient(circle at center, rgba(255, 166, 0, 0.12), rgba(0, 0, 0, 0) 62%);
-            box-shadow:
-                inset 0 0 32px rgba(255, 166, 0, 0.08),
-                0 0 28px rgba(255, 138, 0, 0.08);
-        }
-
-        .logo-wrap::before {
-            content: "";
-            position: absolute;
-            inset: 10px;
-            border: 1px solid rgba(244, 204, 121, 0.15);
-            pointer-events: none;
-        }
-
-        .logo {
-            display: block;
-            width: min(100%, 430px);
-            max-width: 78vw;
-            height: auto;
-            filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.55));
-        }
-
-        h1 {
-            margin: 34px 0 10px;
-            font-size: clamp(2.4rem, 6vw, 4.75rem);
-            line-height: 0.95;
-            letter-spacing: 0.07em;
-            text-transform: uppercase;
-            color: var(--gold-bright);
-            text-shadow:
-                0 2px 0 rgba(80, 46, 8, 0.9),
-                0 0 22px rgba(244, 204, 121, 0.12);
-        }
-
-        .subtitle {
-            margin: 0 auto;
-            max-width: 700px;
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            line-height: 1.75;
-            color: var(--muted);
-            letter-spacing: 0.03em;
-        }
-
-        .content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            padding: 0 28px 40px;
-        }
-
-        .panel {
-            position: relative;
-            padding: 24px 20px;
-            border: 1px solid var(--line);
-            background:
-                linear-gradient(180deg, rgba(30, 20, 10, 0.42), rgba(12, 12, 12, 0.88));
-            box-shadow: inset 0 0 24px rgba(255, 166, 0, 0.03);
-        }
-
-        .panel::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 18px;
-            right: 18px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(244, 204, 121, 0.55), transparent);
-        }
-
-        h2 {
-            margin: 0 0 12px;
-            font-size: 0.95rem;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: var(--gold-bright);
-        }
-
-        p {
-            margin: 0;
-            line-height: 1.7;
-            color: var(--text);
-        }
-
-        .footer {
-            padding: 0 28px 34px;
-            text-align: center;
-        }
-
-        .footer a {
-            color: var(--gold-bright);
-            text-decoration: none;
-            border-bottom: 1px solid rgba(244, 204, 121, 0.35);
-        }
-
-        .footer a:hover {
-            color: #fff4d7;
-            border-bottom-color: rgba(255, 244, 215, 0.55);
-        }
-
-        @media (max-width: 700px) {
-            .hero {
-                padding-top: 52px;
-            }
-
-            .content,
-            .footer {
-                padding-left: 18px;
-                padding-right: 18px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="theme.css">
 </head>
 
-<body>
-    <main class="page-frame">
-        <section class="hero">
-            <div class="crest-line"></div>
-
-            <div class="logo-wrap">
-                <img class="logo" src="./columbia-foundry-logo.png" alt="Columbia Foundry brand logo" />
-            </div>
-
-            <p class="subtitle">
-                Forging software, games, and digital products with craftsmanship.
-            </p>
-        </section>
-
-        <section class="content">
+<body class="home">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+ <a class="wordmark" href="./" aria-label="Columbia Foundry home"><span class="brand-star" aria-hidden="true">★</span><span>COLUMBIA<span class="wordmark-small">FOUNDRY</span></span></a>
+ <nav aria-label="Main navigation"><a href="#software">Our software</a><a href="#about">Our story</a><a href="mailto:hello@columbiafoundry.com">Get in touch <span aria-hidden="true">↗</span></a></nav>
+</header>
+<main id="main">
+<section class="home-hero" aria-labelledby="hero-title">
+ <div class="hero-copy"><p class="eyebrow"><span class="mini-flag" aria-hidden="true"></span> Seattle, Washington · United States</p>
+ <h1 id="hero-title">AMERICAN<br>SOFTWARE.<br><span>BUILT WITH<br>CONVICTION.</span></h1>
+ <p class="hero-description">We’re Columbia Foundry. An American software house building useful tools, great games, and digital products with pride in every detail.</p>
+ <a class="button primary" href="#software">Explore our software <span aria-hidden="true">↗</span></a>
+ <p class="hero-signoff">Independent spirit. American craftsmanship.</p></div>
+ <figure class="hero-art"><img src="columbia-foundry-logo.png" width="1024" height="1536" alt="Columbia Foundry blacksmith at his glowing forge, framed by red, white, and blue American flag artwork"><figcaption><span aria-hidden="true">★ ★ ★</span> THE SPIRIT OF THE BUILDER</figcaption></figure>
+</section>
+<div class="values-band" aria-label="Our values"><span>AMERICAN MADE</span><span aria-hidden="true">★</span><span>INDEPENDENT BY DESIGN</span><span aria-hidden="true">★</span><span>BUILT TO BE USED</span></div>
+<section class="catalog" id="software" aria-labelledby="software-title"><div class="section-intro"><p class="eyebrow">From our workshop</p><h2 id="software-title">Good tools. Great possibilities.</h2><p>Desktop tools, games, and digital products. Made with care. Made in America.</p></div><div class="content">
             <article class="panel">
-                <h2>kOMA Desktop Theme</h2>
+                <h3>kOMA Desktop Theme</h3>
                 <p>Omarchy’s feel on KDE Plasma 6: a dark, keyboard-driven, tiling desktop that is still all Plasma. <a href="products/koma-desktop-theme.html">Explore the desktop →</a></p>
             </article>
             <article class="panel">
-                <h2>kOMA Launcher</h2>
+                <h3>kOMA Launcher</h3>
                 <p>Omarchy’s keyboard-driven launcher recreated for KDE Plasma 6. <a href="products/koma-launcher.html">Explore the launcher →</a></p>
             </article>
             <article class="panel">
-                <h2>kOMA Workspace Indicator</h2>
+                <h3>kOMA Workspace Indicator</h3>
                 <p>Compact desktop switching and application icons for KDE Plasma 6. <a href="products/koma-workspace-indicator.html">Explore the widget →</a></p>
             </article>
             <article class="panel">
-                <h2>kOMA Power Control</h2>
+                <h3>kOMA Power Control</h3>
                 <p>Battery details, power profiles, and PLAID Power keep-awake control for KDE Plasma 6. <a href="products/koma-power-control.html">Explore Power Control →</a></p>
             </article>
             <article class="panel">
-                <h2>kOMA Audio Control</h2>
+                <h3>kOMA Audio Control</h3>
                 <p>Output and microphone volume, mute, and device selection for KDE Plasma 6. <a href="products/koma-audio-control.html">Explore Audio Control →</a></p>
             </article>
             <article class="panel">
-                <h2>Washington Driving Practice Test</h2>
+                <h3>Washington Driving Practice Test</h3>
                 <p>An unofficial 40-question practice quiz based on the Washington Driver Guide, with a full review of what you missed. <a href="quiz/">Take the quiz →</a></p>
             </article>
-            <article class="panel">
-                <h2>What We Build</h2>
-                <p>
-                    Columbia Foundry creates fun games.
-                </p>
-            </article>
+        </div></section>
 
-            <article class="panel">
-                <h2>Current Focus</h2>
-                <p>
-                    Shipping great games.
-                </p>
-            </article>
 
-            <article class="panel">
-                <h2>Contact</h2>
-                <p>
-                    hello@columbiafoundry.com<br />
-                    Seattle, Washington
-                </p>
-            </article>
-        </section>
-
-        <footer class="footer">
-            <p>
-                <a href="/privacy">Privacy Policy</a> |
-                <a href="/terms">Terms of Service</a>
-            </p>
-            <p>
-                © 2026 Columbia Foundry. All rights reserved.
-            </p>
-        </footer>
-    </main>
-</body>
-
-</html>
+<section class="about-section" id="about"><div><p class="eyebrow">The Columbia Foundry spirit</p><h2>Built here.<br>Built with pride.</h2></div><div><p>Great software takes the same things as great craftsmanship: a clear purpose, attention to detail, and the determination to make something that works.</p><p>From our home in Seattle, Washington, we bring that spirit to desktop tools, games, and digital products. An American software house, making American software.</p><a href="mailto:hello@columbiafoundry.com">Let’s build something. Get in touch ↗</a></div></section>
+</main>
+<footer class="site-footer"><a class="footer-brand" href="./">COLUMBIA FOUNDRY<span>Seattle, Washington · Proudly American</span></a><div><a href="privacy/">Privacy Policy</a><a href="terms/">Terms of Service</a><p>© 2026 Columbia Foundry. All rights reserved.</p></div></footer>
+</body></html>
