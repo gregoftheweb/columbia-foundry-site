@@ -9,6 +9,16 @@ body:not(.home)::before{content:"";display:block;height:6px;background:linear-gr
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
 
 /* Product catalog and homepage highlights */
+.home h1.shipping-headline{font-size:clamp(2.5rem,4.3vw,3.9rem)}
+@media(max-width:580px){.home h1.shipping-headline{font-size:clamp(1.8rem,7.6vw,2.8rem)}}
+.products-page .store-downloads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;width:100%;margin-top:26px}
+.products-page .store-qr-link{display:flex;flex-direction:column;align-items:center;gap:12px;margin:0;padding:18px 8px;background:#fff;border:1px solid var(--line);text-align:center;min-width:0}
+.products-page .store-qr-link:hover{border-color:var(--red)}
+.store-badge{display:block;width:135px;max-width:100%;height:40px;object-fit:contain}
+.store-badge-google-play{width:156px;object-fit:contain}
+.store-qr{display:block;width:164px;max-width:100%;height:auto;aspect-ratio:1;image-rendering:pixelated}
+.store-qr-caption{font-size:11px;line-height:1.5}
+@media(max-width:360px){.products-page .store-downloads{grid-template-columns:1fr}}
 .home .app-card{display:flex;flex-direction:column;align-items:flex-start;background:#f5f7fb;min-width:0}
 .app-mark{display:grid;place-items:center;width:60px;height:60px;margin-bottom:22px;background:var(--navy);color:white;border-bottom:4px solid var(--red);font-weight:900;font-size:20px;letter-spacing:.04em}
 .home .app-card .eyebrow{font-size:10px;margin-bottom:10px;color:var(--red)}
