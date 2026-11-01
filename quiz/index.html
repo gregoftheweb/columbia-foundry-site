@@ -7,7 +7,7 @@
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta name="theme-color" content="#153a70">
-    <meta name="description" content="Unofficial 40-question practice quiz based on the Washington Driver Guide.">
+    <meta name="description" content="Unofficial 5- or 40-question practice quiz based on the Washington Driver Guide.">
     <title>Washington Driving Practice Test</title>
     <style>
         :root {
@@ -224,6 +224,22 @@
             border: 0;
         }
 
+        dialog {
+            width: min(720px, calc(100% - 32px));
+            max-height: 85dvh;
+            padding: 24px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            color: var(--text);
+            background: var(--panel);
+        }
+        dialog::backdrop { background: rgba(11, 32, 64, 0.65); }
+        dialog h2 { margin-top: 0; }
+        dialog .guide-text { white-space: pre-wrap; line-height: 1.6; }
+        dialog a { color: var(--accent); }
+        dialog .guide-page { border-top: 1px solid var(--line); padding-top: 12px; }
+        dialog form { position: sticky; bottom: 0; padding-top: 12px; background: var(--panel); }
+
         footer {
             margin-top: 18px;
             color: var(--muted);
@@ -271,7 +287,8 @@
             </div>
 
             <div class="controls">
-                <button id="startBtn">Start Quiz</button>
+                <button id="quickBtn">Quick test (5 questions)</button>
+                <button id="fullBtn">Full test (40 questions)</button>
                 <button id="prevBtn" class="secondary" hidden>Previous</button>
                 <button id="nextBtn" hidden>Next</button>
                 <button id="finishBtn" hidden>Finish</button>
@@ -298,14 +315,29 @@
         </footer>
     </div>
 
+    <dialog id="guideDialog" aria-labelledby="guideTitle">
+        <h2 id="guideTitle">Study the source</h2>
+        <p id="guideQuestion"></p>
+        <div id="guideContent"></div>
+        <form method="dialog"><button autofocus>Close</button></form>
+    </dialog>
+    <script src="guide-sections.js"></script>
     <script src="questions.js"></script>
     <script>
-        const QUIZ_LENGTH = 40;
-        const PASS_MARK = 32;
+        const params = new URLSearchParams(window.location.search);
+        const requestedCount = params.get("questioncount");
+        const count = /^\d+$/.test(requestedCount || "") ? Number(requestedCount) : 0;
+        let QUIZ_LENGTH = Math.min(
+            Number.isSafeInteger(count) && count > 0 ? count : 40,
+            40,
+            QUESTIONS.length
+        );
+        let PASS_MARK = Math.ceil(QUIZ_LENGTH * 0.8);
 
         const frame = document.getElementById("pane");
         const $ = (id) => document.getElementById(id);
-        const startBtn = $("startBtn");
+        const quickBtn = $("quickBtn");
+        const fullBtn = $("fullBtn");
         const prevBtn = $("prevBtn");
         const nextBtn = $("nextBtn");
         const finishBtn = $("finishBtn");
@@ -339,6 +371,7 @@
                 choices: finalOrder.map((i) => q.choices[i]),
                 answer: finalOrder.indexOf(q.answer),
                 explanation: q.explanation,
+                sources: q.sources,
             };
         }
 
@@ -372,12 +405,12 @@
             if (state.phase === "intro") {
                 send({
                     type: "intro",
-                    heading: "40 questions · 32 correct to pass",
+                    heading: "Choose your practice test",
                     points: [
                         "Questions cover signs and signals, right-of-way, speed limits, school zones and buses, impaired driving, seat belts, parking, teen license rules and safe driving.",
-                        "40 questions are drawn at random from a larger bank, so every attempt is different. One question at a time. Pick an answer, then press Next. Your score is only shown at the end.",
+                        "Choose a quick test with 5 questions (4 correct to pass) or a full test with 40 questions (32 correct to pass). Questions are drawn at random from a larger bank, so every attempt is different. One question at a time. Pick an answer, then press Next. Your score is only shown at the end.",
                         "Answers lock once you move on. If you need to go back, check \"Allow editing answers\" in the header. It can only be turned on once and your score will be marked Modified.",
-                        "When you finish, you'll get a full review showing what you missed and why.",
+                        "When you finish, you'll get a full review showing what you missed and why. Missed answers include a link to read the original source text.",
                     ],
                 });
             } else if (state.phase === "quiz") {
@@ -418,7 +451,8 @@
             $("track").setAttribute("aria-valuenow", pct);
 
             const inQuiz = state.phase === "quiz";
-            startBtn.hidden = state.phase !== "intro";
+            quickBtn.hidden = state.phase !== "intro";
+            fullBtn.hidden = state.phase !== "intro";
             prevBtn.hidden = !inQuiz;
             nextBtn.hidden = !inQuiz || last;
             finishBtn.hidden = !inQuiz || !last;
@@ -472,10 +506,16 @@
             window.scrollTo({ top: 0 });
         }
 
-        startBtn.addEventListener("click", () => {
+        function startQuiz(length) {
+            QUIZ_LENGTH = Math.min(length, QUESTIONS.length);
+            PASS_MARK = Math.ceil(QUIZ_LENGTH * 0.8);
+            state = newState();
             state.phase = "quiz";
             goTo(0);
-        });
+        }
+
+        quickBtn.addEventListener("click", () => startQuiz(5));
+        fullBtn.addEventListener("click", () => startQuiz(40));
 
         nextBtn.addEventListener("click", () => {
             if (state.answers[state.current] === null) return;
@@ -508,6 +548,51 @@
             render();
         });
 
+        const guideDialog = $("guideDialog");
+        let studyOpener = null;
+        guideDialog.addEventListener("click", (event) => {
+            if (event.target === guideDialog) {
+                const rect = guideDialog.getBoundingClientRect();
+                if (event.clientX < rect.left || event.clientX > rect.right ||
+                    event.clientY < rect.top || event.clientY > rect.bottom) guideDialog.close();
+            }
+        });
+        guideDialog.addEventListener("close", () => send({ type: "studyClosed", index: studyOpener }));
+
+        function openStudy(index) {
+            if (state.phase !== "done" || !Number.isInteger(index)) return;
+            const q = state.questions[index];
+            if (!q || state.answers[index] === q.answer) return;
+            const content = $("guideContent");
+            content.replaceChildren();
+            $("guideQuestion").textContent = q.question;
+            q.sources.forEach((key) => {
+                const source = GUIDE_SECTIONS[key];
+                const section = document.createElement("section");
+                const heading = document.createElement("h3");
+                heading.textContent = source.url ? source.title : "Guide " + key + " · " + source.title;
+                section.append(heading);
+                source.pages.forEach((page) => {
+                    const link = document.createElement("a");
+                    link.href = source.url || "driver-guide.pdf#page=" + page.page;
+                    link.target = "_blank";
+                    link.rel = "noopener";
+                    link.textContent = source.url ? "Read the full law (" + page.label + ")" : "Open original PDF · page " + page.page;
+                    const text = document.createElement("p");
+                    text.className = "guide-text";
+                    text.textContent = page.text;
+                    const block = document.createElement("div");
+                    block.className = "guide-page";
+                    block.append(link, text);
+                    section.append(block);
+                });
+                content.append(section);
+            });
+            studyOpener = index;
+            guideDialog.showModal();
+            guideDialog.scrollTop = 0;
+        }
+
         window.addEventListener("message", (event) => {
             if (event.source !== frame.contentWindow) return;
             const msg = event.data || {};
@@ -518,6 +603,8 @@
                 renderPane();
             } else if (msg.type === "height") {
                 frame.style.height = Math.max(420, Math.ceil(msg.height)) + "px";
+            } else if (msg.type === "study") {
+                openStudy(msg.index);
             } else if (msg.type === "select") {
                 const choice = Number(msg.choice);
                 const q = state.questions[state.current];
@@ -528,6 +615,8 @@
         });
 
         state = newState();
+        // Direct test links retain the question-count shortcut.
+        if (Number.isSafeInteger(count) && count > 0) state.phase = "quiz";
         renderHeader();
     </script>
 </body>

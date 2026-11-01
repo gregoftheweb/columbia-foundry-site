@@ -218,6 +218,19 @@
             display: inline-block;
         }
 
+        .study-link {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 4px 0;
+            border: 0;
+            background: transparent;
+            color: var(--accent);
+            font: inherit;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .study-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
         .why {
             margin: 10px 0 0;
             font-size: 0.92rem;
@@ -277,7 +290,7 @@
             const list = el("ul");
             data.points.forEach((p) => list.append(el("li", null, p)));
             box.append(list);
-            box.append(el("p", "note", "Press Start Quiz above when you're ready."));
+            box.append(el("p", "note", "Choose Quick test (5 questions) or Full test (40 questions) above to begin."));
             root.append(box);
         }
 
@@ -345,6 +358,15 @@
                 });
                 item.append(opts);
                 item.append(el("p", "why", it.explanation));
+                if (!ok && it.sources && it.sources.length) {
+                    const study = el("button", "study-link", "Read the original source text");
+                    study.type = "button";
+                    study.id = "study-" + n;
+                    study.setAttribute("aria-haspopup", "dialog");
+                    study.setAttribute("aria-label", "Read the original source text for question " + (n + 1));
+                    study.addEventListener("click", () => send({ type: "study", index: n }));
+                    item.append(study);
+                }
                 root.append(item);
             });
         }
@@ -353,6 +375,10 @@
             if (event.source !== window.parent) return;
             const msg = event.data || {};
             if (msg.source !== "quiz-parent") return;
+            if (msg.type === "studyClosed") {
+                document.getElementById("study-" + msg.index)?.focus({ preventScroll: true });
+                return;
+            }
             if (msg.type === "intro") renderIntro(msg);
             else if (msg.type === "question") renderQuestion(msg);
             else if (msg.type === "summary") renderSummary(msg);

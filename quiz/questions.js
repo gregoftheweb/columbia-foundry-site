@@ -5,7 +5,7 @@
 // the explanation names the RCW it comes from instead.
 //
 // Each question: { question, choices, answer (index into choices), explanation,
-// image (optional key into SIGNS) }. The bank holds more than 40 questions;
+// sources (keys into GUIDE_SECTIONS), image (optional key into SIGNS) }. The bank holds more than 40 questions;
 // each attempt draws a random 40, then shuffles the choices (keeping
 // "...of the above" choices last).
 
@@ -69,6 +69,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "The orange triangle marks a slow-moving vehicle, such as farm equipment designed to go 25 mph or less. Slow down, be patient, and pass only when it's safe. (Guide 4.8)",
+        sources: ["4.8"],
     },
     {
         question: "A five-sided sign like this one warns you that:",
@@ -81,6 +82,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Fluorescent yellow-green signs warn of school, pedestrian, and bicycle activity, and the five-sided (pentagon) shape is used for school zones and school crossings. (Guide 4.12)",
+        sources: ["4.12"],
     },
     {
         question: "What does this pennant-shaped sign on the left side of the road mean?",
@@ -93,6 +95,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "The yellow pennant marks the start of a no-passing zone, usually where hills, curves, or intersections hide oncoming traffic. (Guide 4.12)",
+        sources: ["4.12"],
     },
     {
         question: "When you see this sign, you should:",
@@ -105,6 +108,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "The crossbuck marks a railroad crossing. Trains always have the right-of-way and can take up to a mile to stop. Trust the signals even if you don't see a train. (Guide 4.7)",
+        sources: ["4.7"],
     },
 
     // ---- Signals ----
@@ -118,6 +122,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "A flashing red light works like a stop sign: come to a full stop, then go when it's your turn. (Guide 4.11)",
+        sources: ["4.11"],
     },
     {
         question: "You come to an intersection where the traffic signal isn't working. You should:",
@@ -129,6 +134,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "If a traffic signal isn't working, treat the intersection like a four-way stop. (Guide 4.10)",
+        sources: ["4.10"],
     },
     {
         question: "You are on a two-way street, stopped at a red light. Can you legally turn left onto a one-way street?",
@@ -140,6 +146,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "After a complete stop at a red light, you may turn left onto a one-way street (or right onto any street) unless a \"no turn on red\" sign is posted and you have room to enter traffic. (Guide 4.11)",
+        sources: ["4.11"],
     },
 
     // ---- Right-of-way ----
@@ -153,6 +160,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "At a four-way stop, first to arrive goes first. If two vehicles arrive at about the same time, yield to the one on the right. (Guide 4.13)",
+        sources: ["4.13"],
     },
     {
         question: "You are turning left at an intersection on a solid green light (no arrow). You must:",
@@ -164,6 +172,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "When turning left on a green light, oncoming traffic has the right-of-way. Wait in a spot with a clear view and turn when there's a break in traffic. (Guide 4.11)",
+        sources: ["4.11"],
     },
     {
         question: "At an uncontrolled intersection (no signs or signals), you must yield the right-of-way when:",
@@ -175,6 +184,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "At an uncontrolled intersection you must yield if a vehicle is already in it, if you're entering a state highway from a secondary road, if you're entering a paved road from an unpaved one, or if you're turning left in front of oncoming traffic. (Guide 4.15)",
+        sources: ["4.15"],
     },
     {
         question: "When entering a roundabout, you should:",
@@ -186,6 +196,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "All vehicles yield on entry to traffic already in the roundabout, then travel counterclockwise and exit at the street they want. (Guide 4.15)",
+        sources: ["4.15"],
     },
     {
         question: "An ambulance with flashing lights and a siren is approaching behind you. You should:",
@@ -197,6 +208,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "As soon as you see or hear an emergency vehicle using lights or sirens, pull to the right side of the road and stop. Wait until it has passed before signaling and reentering traffic. (Guide 4.9)",
+        sources: ["4.9"],
     },
     {
         question: "A pedestrian is crossing in front of you at an intersection. You may go after the pedestrian has:",
@@ -208,6 +220,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Wait until a pedestrian has cleared your lane and one more lane. If they use a wheelchair, cane, guide dog, or other service animal, wait until they have crossed the whole street. (Guide 4.1)",
+        sources: ["4.1"],
     },
 
     // ---- Speed ----
@@ -216,12 +229,14 @@ const QUESTIONS = [
         choices: ["25 mph", "20 mph", "30 mph", "35 mph"],
         answer: 0,
         explanation: "Washington law (RCW 46.61.400) sets 25 mph on city and town streets, 50 mph on county roads, and 60 mph on state highways unless other limits are posted.",
+        sources: ["rcw-46.61.400"],
     },
     {
         question: "What is the speed limit in a school zone when children are present or signs say the limit applies?",
         choices: ["20 mph", "15 mph", "25 mph", "30 mph"],
         answer: 0,
         explanation: "The school zone speed limit is 20 mph, because higher speeds increase the risk of fatal crashes. Signs may show when it applies. (Guide 4.17)",
+        sources: ["4.17"],
     },
     {
         question: "You are approaching a tow truck stopped on the shoulder with its lights flashing. Washington law requires you to:",
@@ -233,6 +248,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "When a roadside response vehicle has flashing lights, move over or slow to at least 10 mph below the speed limit, and never above 50 mph. This includes tow trucks, police, fire, ambulances, and road crews. (Guide 4.17)",
+        sources: ["4.17"],
     },
 
     // ---- School buses ----
@@ -246,6 +262,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "On a two-lane road, vehicles in both directions must stop when a school bus flashes its red lights and extends its stop sign. (Guide 4.2)",
+        sources: ["4.2"],
     },
     {
         question: "When are you NOT required to stop for a school bus with flashing red lights?",
@@ -257,6 +274,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Traffic going the other way doesn't need to stop if there are three or more lanes, or the lanes are separated by a median or barrier. Drivers behind the bus, including those in turn lanes, must always stop. (Guide 4.2)",
+        sources: ["4.2"],
     },
 
     // ---- Impaired driving ----
@@ -265,18 +283,21 @@ const QUESTIONS = [
         choices: ["0.08%", "0.02%", "0.05%", "0.10%"],
         answer: 0,
         explanation: "For drivers 21 and older, a BAC of 0.08% or higher is a DUI. (Guide 1.15)",
+        sources: ["1.15"],
     },
     {
         question: "A driver under 21 can be charged for driving with a blood alcohol concentration of:",
         choices: ["0.02% or more", "0.08% or more", "0.05% or more", "0.10% or more"],
         answer: 0,
         explanation: "Drivers under 21 face DUI consequences at a BAC of 0.02% or more. (Guide 1.15)",
+        sources: ["1.15"],
     },
     {
         question: "For drivers 21 and older, it's a DUI to have more than ___ of active THC per milliliter of blood.",
         choices: ["5 nanograms", "0 nanograms", "2 nanograms", "10 nanograms"],
         answer: 0,
         explanation: "The THC limit is 5 nanograms per milliliter of blood for drivers 21 and older. For drivers under 21, anything above 0 nanograms counts. (Guide 1.15)",
+        sources: ["1.15"],
     },
     {
         question: "Under Washington's Implied Consent Law, if you refuse a breath or blood test when an officer suspects you are impaired:",
@@ -288,12 +309,14 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Everyone who drives in Washington agrees to be tested. Refusing can cost you your driving privilege for 90 to 730 days, or until you turn 21, whichever is longer. (Guide 1.15)",
+        sources: ["1.15"],
     },
     {
         question: "Alcohol- and drug-related offenses stay on your driving record for:",
         choices: ["Life", "3 years", "5 years", "10 years"],
         answer: 0,
         explanation: "Alcohol- and drug-related offenses appear on your driving record for life. (Guide 1.15)",
+        sources: ["1.15"],
     },
     {
         question: "Under the open container law, an opened bottle of alcohol may be carried in a vehicle only:",
@@ -305,6 +328,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Opened alcohol and cannabis products can only be carried in a trunk or truck bed, never in storage compartments the driver can reach. (Guide 1.15)",
+        sources: ["1.15"],
     },
 
     // ---- Phones and seat belts ----
@@ -318,6 +342,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "No driver of any age may hold an electronic device while driving. Hands-free use is allowed for licensed adults, but it's still a distraction. (Guide 3.4)",
+        sources: ["3.4"],
     },
     {
         question: "Who must wear a seat belt in a moving vehicle in Washington?",
@@ -329,6 +354,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Every person in a moving vehicle must wear a seat belt or be fastened into an approved child restraint (RCW 46.61.687 and 46.61.688). Children under 13 should ride in the back seat. (Guide 2.6)",
+        sources: ["2.6"],
     },
 
     // ---- Parking ----
@@ -337,6 +363,7 @@ const QUESTIONS = [
         choices: ["15 feet", "5 feet", "10 feet", "30 feet"],
         answer: 0,
         explanation: "Don't park within 15 feet of a fire hydrant. Other limits include 30 feet from a stop sign, yield sign, or traffic signal and 50 feet from a railroad crossing. (Guide 4.18)",
+        sources: ["4.18"],
     },
     {
         question: "When parking facing downhill next to a curb, you should turn your front wheels:",
@@ -348,6 +375,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Facing downhill, turn your wheels toward the curb so the car rolls into it if the brake fails. Always set your parking brake on a hill. (Guide 4.18)",
+        sources: ["4.18"],
     },
 
     // ---- Teen licensing ----
@@ -361,6 +389,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Teens need at least 50 hours of supervised practice (40 day and 10 night) and must hold their instruction permit for at least 6 months. (Guide 1.8)",
+        sources: ["1.8"],
     },
     {
         question: "During the first 6 months with an intermediate license, you may NOT carry:",
@@ -372,6 +401,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "For the first 6 months, no passengers under 20 except immediate family. After that, until 18 or one year (whichever is first), no more than 3 passengers under 20 except immediate family. (Guide 1.8)",
+        sources: ["1.8"],
     },
     {
         question: "An intermediate license holder may not drive between ___ unless accompanied by a parent, guardian, or licensed driver at least 25 years old.",
@@ -383,6 +413,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Intermediate license holders may not drive between 1 a.m. and 5 a.m. unless accompanied by a parent, guardian, or licensed driver at least 25 years old. (Guide 1.8)",
+        sources: ["1.8"],
     },
     {
         question: "If you have an instruction permit or intermediate license, you may use a cell phone while driving:",
@@ -394,6 +425,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Permit and intermediate license holders can't use a phone or wireless device while driving, even hands-free, except to report an emergency. (Guide 1.8, 3.0)",
+        sources: ["1.8", "3.0"],
     },
 
     // ---- Lanes and markings ----
@@ -407,6 +439,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Keep right except to pass. Use the left lane to pass slower traffic, and follow the speed limit while passing. (Guide 4.10)",
+        sources: ["4.10"],
     },
     {
         question: "Bicycle lanes are marked with:",
@@ -418,6 +451,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Bike lanes use solid white lines and a bicycle symbol, and are often painted green. Drive in a bike lane only to turn or to reach the curb to park. (Guide 4.6, 4.16)",
+        sources: ["4.6", "4.16"],
     },
     {
         question: "A shared center lane marked with left-turn arrows in both directions may be used:",
@@ -429,6 +463,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Shared center lanes are for left turns in either direction (and U-turns where permitted). They must not be used for passing, and you shouldn't travel more than 300 feet in one. (Guide 4.16)",
+        sources: ["4.16"],
     },
     {
         question: "The center of a two-way road is marked with a solid yellow line and a dashed yellow line. You may pass:",
@@ -440,6 +475,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "You may not pass when the solid yellow line is on your side. If the dashed line is on your side, you may pass when it's safe. (Guide 4.16)",
+        sources: ["4.16"],
     },
 
     // ---- Lights, signals, emergencies ----
@@ -448,6 +484,7 @@ const QUESTIONS = [
         choices: ["500 feet", "100 feet", "200 feet", "1,000 feet"],
         answer: 0,
         explanation: "Dim your high beams within 500 feet of an oncoming vehicle and within 300 feet when you're following another vehicle. (Guide 2.5)",
+        sources: ["2.5"],
     },
     {
         question: "Your vehicle starts to skid on a slippery road. You should:",
@@ -459,6 +496,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "In a skid, take your foot off the accelerator, brake carefully (ABS lets you keep steering), and steer the way the vehicle is going until the tires grip again. (Guide 5.6)",
+        sources: ["5.6"],
     },
     {
         question: "When is it safe to move back into the lane in front of a large truck after passing it?",
@@ -470,12 +508,14 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Wait until you can clearly see both headlights in your rearview mirror before moving in front of a large vehicle. A loaded truck at 55 mph needs about 450 feet to stop. (Guide 4.4)",
+        sources: ["4.4"],
     },
     {
         question: "If a law enforcement officer doesn't file a report after your collision, you must file a collision report with the state within:",
         choices: ["4 days", "24 hours", "10 days", "30 days"],
         answer: 0,
         explanation: "State law requires you to file a collision report within 4 days of a crash if a law enforcement officer doesn't file one for you. (Guide 5.9)",
+        sources: ["5.9"],
     },
 
     // ---- Signals and signs ----
@@ -489,6 +529,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "A flashing yellow light means the same as a yield sign. Treat it as an uncontrolled intersection and go when you have the right-of-way. (Guide 4.11)",
+        sources: ["4.11"],
     },
     {
         question: "A steady yellow light comes on as you approach an intersection. You should:",
@@ -500,6 +541,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Yellow means the light is changing to red, so slow down and prepare to stop. If you're already in the intersection, continue through at the posted speed. You may never speed up past the limit to beat the light. (Guide 4.11)",
+        sources: ["4.11"],
     },
     {
         question: "A green arrow pointing left means:",
@@ -511,6 +553,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "A green arrow gives you the right-of-way to go in that direction. There should be no oncoming vehicles, crossing traffic, or pedestrians while it's green. (Guide 4.11)",
+        sources: ["4.11"],
     },
     {
         question: "A freeway on-ramp has a ramp meter showing a red light. You should:",
@@ -522,6 +565,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Ramp meters work like regular traffic signals. When the light is red, stop at the white stop line, and continue when it turns green. (Guide 4.11)",
+        sources: ["4.11"],
     },
     {
         question: "Orange signs on the road warn you about:",
@@ -533,6 +577,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Orange signs warn of construction and maintenance. Fluorescent yellow-green signs mark schools, pedestrians, and bicycles, blue signs mark motorist services, and brown signs mark recreation areas. (Guide 4.12)",
+        sources: ["4.12"],
     },
     {
         question: "Fines for traffic offenses in a construction zone are doubled when:",
@@ -544,6 +589,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Fines double for offenses committed in construction areas when workers are present. (Guide 4.12)",
+        sources: ["4.12"],
     },
     {
         question: "Over a reversible lane, you see a steady red X. This means:",
@@ -555,6 +601,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "On reversible lanes, a green arrow means you can use the lane, a red X means you can't, and a steady yellow X means it's changing direction and you should move out of it as soon as it's safe. (Guide 4.16)",
+        sources: ["4.16"],
     },
 
     // ---- Right-of-way and turns ----
@@ -568,6 +615,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "At a two-way stop, turning vehicles must yield to the vehicle going straight. (Guide 4.13)",
+        sources: ["4.13"],
     },
     {
         question: "When turning left or right at an intersection, you must turn into:",
@@ -579,6 +627,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "State law requires you to turn into the lane closest to the direction you are coming from. With multiple turn lanes, stay in your own lane through the turn. You can change lanes after the turn. (Guide 4.14)",
+        sources: ["4.14"],
     },
     {
         question: "In Washington, U-turns are:",
@@ -590,6 +639,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "U-turns are generally allowed unless a sign prohibits them. You must be able to see clearly in every direction, so don't make one on a curve or near the top of a hill. (Guide 4.14)",
+        sources: ["4.14"],
     },
     {
         question: "You are merging onto an interstate from an on-ramp. Who has the right-of-way?",
@@ -601,6 +651,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Drivers already on the interstate have the right-of-way. Use the whole on-ramp, your signal, and your mirrors, and adjust your speed to merge into a safe space. (Guide 5.3)",
+        sources: ["5.3"],
     },
     {
         question: "Traffic is backed up because one lane is closed ahead. The \"zipper merge\" means you should:",
@@ -612,6 +663,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "When traffic is slow, stay in your lane until the merge area, then take turns like the teeth of a zipper. It improves traffic flow by about 60 percent. (Guide 5.3)",
+        sources: ["5.3"],
     },
     {
         question: "Bicyclists riding through a crosswalk are:",
@@ -623,6 +675,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Bicyclists in crosswalks are considered pedestrians, and you must yield to them in both marked and unmarked crosswalks. (Guide 4.6)",
+        sources: ["4.6"],
     },
     {
         question: "Is every intersection a crosswalk, even if there are no painted lines?",
@@ -634,6 +687,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Every intersection is legally a crosswalk, whether it's marked or unmarked. Yield to pedestrians there. (Guide 4.13, 4.16)",
+        sources: ["4.13", "4.16"],
     },
 
     // ---- Sharing the road ----
@@ -642,6 +696,7 @@ const QUESTIONS = [
         choices: ["3 feet", "1 foot", "2 feet", "10 feet"],
         answer: 0,
         explanation: "Leave at least 3 feet. Move over a full lane if there are two lanes in your direction, and never cross into oncoming traffic to pass. (Guide 4.6)",
+        sources: ["4.6"],
     },
     {
         question: "A motorcyclist is riding on the far right side of a wide lane. You should:",
@@ -653,6 +708,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Motorcyclists are entitled to a full lane. Never move into the same lane alongside one, even if the lane is wide and the rider is far to one side. (Guide 4.5)",
+        sources: ["4.5"],
     },
     {
         question: "If you can't see a large truck's side mirrors while driving next to it:",
@@ -664,6 +720,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "If you can't see a large vehicle's mirrors, the driver can't see you. Avoid driving alongside large vehicles for long. (Guide 2.13, 4.4)",
+        sources: ["2.13", "4.4"],
     },
     {
         question: "When red lights are flashing at a railroad crossing, you must stop:",
@@ -675,6 +732,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Stop 15 to 50 feet from the nearest rail when signals flash, a gate is lowering or down, a flagger signals, or a train is close. You must stop whether or not the gate is down. (Guide 4.7)",
+        sources: ["4.7"],
     },
     {
         question: "Your vehicle stalls on railroad tracks. What should you do?",
@@ -686,6 +744,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "If your vehicle gets stuck at a crossing, get everyone out right away. Then call the number on the blue Emergency Notification sign, or 911. (Guide 4.7)",
+        sources: ["4.7"],
     },
 
     // ---- Speed and conditions ----
@@ -699,6 +758,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Speed limits are for ideal conditions. You must drive at a speed that's safe for current conditions, and you can be ticketed for going too fast for conditions even under the limit. (Guide 4.12, 5.1)",
+        sources: ["4.12", "5.1"],
     },
     {
         question: "It starts to rain on a hot day. When is the road most slippery?",
@@ -710,6 +770,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Heat brings oil in the asphalt to the surface, so the road is very slippery for the first few minutes of rain, until the oil washes away. (Guide 5.6)",
+        sources: ["5.6"],
     },
     {
         question: "In near-freezing weather, which part of the road is likely to ice over first?",
@@ -721,6 +782,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Bridges and overpasses can have icy spots when the rest of the road doesn't, and shady spots can be icy on cold, wet days. (Guide 5.6)",
+        sources: ["5.6"],
     },
     {
         question: "Your car begins to hydroplane on a wet road. You should:",
@@ -732,6 +794,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Ease off the accelerator, press the brakes gently, keep the wheel steady, and look where you want to go. The best prevention is to slow down when the road is wet. (Guide 5.6)",
+        sources: ["5.6"],
     },
     {
         question: "At night, you should drive at a speed that lets you:",
@@ -743,6 +806,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Drive slowly enough to stop within the glow of your headlights (usually about 400 feet), and increase your following distance at night. (Guide 5.6)",
+        sources: ["5.6"],
     },
     {
         question: "Washington law requires your headlights to be on:",
@@ -754,18 +818,21 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Headlights are required from a half hour after sunset to a half hour before sunrise. It's also smart to use them in rain, snow, fog, or smoke. (Guide 2.5)",
+        sources: ["2.5"],
     },
     {
         question: "When following another vehicle at night with your high beams on, switch to low beams within:",
         choices: ["300 feet", "100 feet", "500 feet", "1,000 feet"],
         answer: 0,
         explanation: "Switch to low beams within 300 feet when you're behind another vehicle and within 500 feet of an oncoming vehicle. (Guide 2.5)",
+        sources: ["2.5"],
     },
     {
         question: "You should turn on your turn signal at least ___ before you turn.",
         choices: ["100 feet", "25 feet", "50 feet", "300 feet"],
         answer: 0,
         explanation: "Signal at least 100 feet before you turn or change lanes. (Guide 2.5, 4.14)",
+        sources: ["2.5", "4.14"],
     },
     {
         question: "Your brake lights stop working. Which hand signal tells drivers behind you that you're stopping or slowing?",
@@ -777,6 +844,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Stop or slow: left arm out, fingers pointing down. Left turn: arm straight out. Right turn: arm bent so your fingers point up. (Guide 2.5)",
+        sources: ["2.5"],
     },
 
     // ---- Emergencies and collisions ----
@@ -790,6 +858,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Hold the wheel firmly, keep the car straight, and take your foot off the gas. Don't brake hard. Let the car slow down, then pull off in a safe place. (Guide 5.7)",
+        sources: ["5.7"],
     },
     {
         question: "Your accelerator sticks and the vehicle keeps speeding up. You should:",
@@ -801,6 +870,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Keep your eyes on the road, quickly shift to neutral, pull off when it's safe, and then turn off the engine. (Guide 5.7)",
+        sources: ["5.7"],
     },
     {
         question: "Your vehicle breaks down on the highway. To warn other drivers, place emergency flares:",
@@ -812,6 +882,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Get off the road if you can, turn on your flashers, and place flares 200 to 300 feet behind your vehicle. (Guide 5.7)",
+        sources: ["5.7"],
     },
     {
         question: "After a collision, a power line falls onto your car. You should:",
@@ -823,6 +894,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Assume power lines are energized. Stay in the vehicle and call 911. Only if there's a fire should you jump clear without touching the car and shuffle 35 feet away. (Guide 5.9)",
+        sources: ["5.9"],
     },
     {
         question: "You hit a parked car and can't find the owner. You must:",
@@ -834,6 +906,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "If you hit a parked vehicle, try to find the owner. If you can't, leave a note they will easily see with the date and time of the collision and your contact information. (Guide 5.9)",
+        sources: ["5.9"],
     },
     {
         question: "An officer signals you to pull over. After stopping on the right side of the road, you should:",
@@ -845,6 +918,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Turn off the engine and audio, stay in the vehicle, keep your hands on the wheel, turn on interior lights at night, and wait for instructions before reaching for documents. (Guide 5.10)",
+        sources: ["5.10"],
     },
 
     // ---- Parking ----
@@ -853,18 +927,21 @@ const QUESTIONS = [
         choices: ["30 feet", "10 feet", "15 feet", "50 feet"],
         answer: 0,
         explanation: "Don't park within 30 feet of a traffic signal, stop sign, or yield sign. (Guide 4.18)",
+        sources: ["4.18"],
     },
     {
         question: "You may not park within ___ of a railroad crossing.",
         choices: ["50 feet", "15 feet", "30 feet", "100 feet"],
         answer: 0,
         explanation: "Don't park within 50 feet of a railroad crossing, and never on the tracks. (Guide 4.18)",
+        sources: ["4.18"],
     },
     {
         question: "When parallel parking, your vehicle must be no more than ___ from the curb.",
         choices: ["12 inches", "6 inches", "18 inches", "24 inches"],
         answer: 0,
         explanation: "Park no more than 12 inches from the curb. (Guide 4.18)",
+        sources: ["4.18"],
     },
     {
         question: "You park on a hill where there is no curb. Which way should you turn your wheels?",
@@ -876,6 +953,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "With no curb, turn your wheels toward the edge of the road so that if the car rolls, it rolls away from traffic. (Guide 4.18)",
+        sources: ["4.18"],
     },
     {
         question: "Before opening your car door after parking on the street, a good habit is to:",
@@ -887,6 +965,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Check your mirrors, then open the door with the hand farthest from it. This turns your body so you can see approaching bicyclists and keeps the door from flying open. (Guide 4.18)",
+        sources: ["4.18"],
     },
 
     // ---- Lane markings ----
@@ -900,6 +979,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Double solid white lines are a barrier between lanes, and it's illegal to cross them. (Guide 4.16)",
+        sources: ["4.16"],
     },
     {
         question: "Double solid yellow lines in the center of a two-way road mean:",
@@ -911,6 +991,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Double solid yellow centerlines mean you may not pass in either direction. (Guide 4.16)",
+        sources: ["4.16"],
     },
     {
         question: "Short, wide dashed white lines next to your lane mean:",
@@ -922,6 +1003,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Shorter dashed white lines mean the lane is ending, and you'll need to merge or exit. (Guide 4.16)",
+        sources: ["4.16"],
     },
     {
         question: "HOV (carpool) lanes are marked with:",
@@ -933,6 +1015,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "HOV lanes are marked with a diamond symbol and reserved for vehicles meeting the posted occupancy, plus buses, vanpools, and motorcycles. They are not passing lanes. (Guide 4.16)",
+        sources: ["4.16"],
     },
 
     // ---- Impaired, distracted, fatigued ----
@@ -946,6 +1029,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Drivers under 21 face DUI consequences for any active THC above 0 nanograms per milliliter of blood. Driving after consuming any cannabis is illegal at every age. (Guide 1.15, 3.1)",
+        sources: ["1.15", "3.1"],
     },
     {
         question: "You just started a new prescription medication. Before driving, you should:",
@@ -957,6 +1041,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Legal drugs can still impair you, and impaired driving is a crime no matter where the drug came from. Wait until you know how a new medication affects you. (Guide 3.1)",
+        sources: ["3.1"],
     },
     {
         question: "Mixing alcohol with cannabis, medication, or other drugs before driving:",
@@ -968,6 +1053,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Mixing substances (polydrug use) can produce effects greater than any one drug on its own, and it is the most common impairment involved in fatal crashes. (Guide 3.1)",
+        sources: ["3.1"],
     },
     {
         question: "You're driving alone on a long trip and start feeling drowsy. You should:",
@@ -979,6 +1065,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "If you get tired, pull off and take a 20-minute nap. On long trips, plan to stop about every 100 miles or 2 hours. (Guide 3.1)",
+        sources: ["3.1"],
     },
     {
         question: "Wearing headphones or earbuds that cover both ears while driving is:",
@@ -990,6 +1077,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "It's against the law to drive wearing earbuds, earphones, or headsets that play sound or cancel noise. You may use a hands-free device in one ear. (Guide 3.0)",
+        sources: ["3.0"],
     },
     {
         question: "Driving under the influence (DUI) laws also apply if you are:",
@@ -1001,6 +1089,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "DUI laws also cover being in physical control of a vehicle, even a parked one. If you can operate the engine, you are considered to be in control. (Guide 1.15)",
+        sources: ["1.15"],
     },
 
     // ---- Licensing ----
@@ -1009,12 +1098,14 @@ const QUESTIONS = [
         choices: ["15", "14", "15½", "16"],
         answer: 0,
         explanation: "You can get a permit at 15 if you're enrolling in driver training. If not, you can take the knowledge exam at 15½. (Guide 1.8)",
+        sources: ["1.8"],
     },
     {
         question: "How long must a 16- or 17-year-old hold an instruction permit before getting an intermediate license?",
         choices: ["At least 6 months", "At least 30 days", "At least 3 months", "At least 1 year"],
         answer: 0,
         explanation: "Teens must hold their instruction permit for at least 6 months, complete driver training, and be free of traffic violations for the 6 months before applying. (Guide 1.8)",
+        sources: ["1.8"],
     },
     {
         question: "An intermediate license holder gets a second traffic violation. What happens?",
@@ -1026,12 +1117,14 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "For intermediate license holders, a first violation means restrictions apply until 18, a second means a 6-month suspension (or until 18, whichever comes first), and a third means suspension until 18. (Guide 1.8)",
+        sources: ["1.8"],
     },
     {
         question: "If you move, you must update your address with DOL within:",
         choices: ["10 days", "30 days", "60 days", "1 year"],
         answer: 0,
         explanation: "Update your address in License Express within 10 days of moving. (Guide 1.16)",
+        sources: ["1.16"],
     },
     {
         question: "Which is required of every Washington driver?",
@@ -1043,6 +1136,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "You must have liability insurance and carry proof of it. Keep your title somewhere safe, not in the vehicle. (Guide 2.0, 2.3)",
+        sources: ["2.0", "2.3"],
     },
 
     // ---- Children and occupants ----
@@ -1051,18 +1145,21 @@ const QUESTIONS = [
         choices: ["2", "1", "4", "6"],
         answer: 0,
         explanation: "Children up to age 2 must ride rear-facing. From 2 to 4 they need a harness seat, and after that a booster until the adult belt fits (about 4'9\"). (Guide 2.6)",
+        sources: ["2.6"],
     },
     {
         question: "Children under what age should never ride in the front seat because of airbags?",
         choices: ["13", "8", "10", "16"],
         answer: 0,
         explanation: "Children under 13 should never ride in the front seat. They could be seriously injured or killed if an airbag deploys. (Guide 2.6)",
+        sources: ["2.6"],
     },
     {
         question: "It is a crime to leave a child under what age unattended in a parked vehicle?",
         choices: ["12", "6", "10", "16"],
         answer: 0,
         explanation: "It's a crime to leave a child under 12 unattended in a parked vehicle, or a child under 16 alone in a vehicle with the motor running. (Guide 4.18)",
+        sources: ["4.18"],
     },
 
     // ---- Washington-specific ----
@@ -1076,6 +1173,7 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Beach driving is allowed only in Grays Harbor and Pacific counties. The beach counts as a state highway, the limit is 25 mph, and pedestrians and bicyclists always have the right-of-way. (Guide 4.20)",
+        sources: ["4.20"],
     },
     {
         question: "At a ferry terminal, cutting into the ferry line ahead of waiting vehicles is:",
@@ -1087,5 +1185,288 @@ const QUESTIONS = [
         ],
         answer: 0,
         explanation: "Washington State Ferries are part of the state highway system, so all rules of the road apply. Cutting the ferry line is a traffic offense. (Guide 4.20)",
+        sources: ["4.20"],
+    },
+
+    // ---- Additional study questions ----
+    {
+        "question": "When approaching a curve, when should you reduce speed?",
+        "choices": [
+            "Before entering the curve.",
+            "Only after reaching the middle.",
+            "Only when leaving the curve.",
+            "Never if the road is dry."
+        ],
+        "answer": 0,
+        "explanation": "Reduce speed before entering a curve to help maintain traction. (Guide 5.6)",
+        "sources": [
+            "5.6"
+        ]
+    },
+    {
+        "question": "While driving through a curve, you should:",
+        "choices": [
+            "Maintain a steady speed and steer smoothly.",
+            "Brake sharply at the midpoint.",
+            "Accelerate suddenly.",
+            "Make quick, jerky steering corrections."
+        ],
+        "answer": 0,
+        "explanation": "Sudden braking or acceleration can disrupt vehicle balance in a curve. (Guide 5.6)",
+        "sources": [
+            "5.6"
+        ]
+    },
+    {
+        "question": "As you exit a curve, you should:",
+        "choices": [
+            "Accelerate gradually as conditions allow.",
+            "Accelerate as hard as possible.",
+            "Stop to check your mirrors.",
+            "Turn sharply toward the shoulder."
+        ],
+        "answer": 0,
+        "explanation": "Gradual acceleration helps maintain stability as you return to straight travel. (Guide 5.6)",
+        "sources": [
+            "5.6"
+        ]
+    },
+    {
+        "question": "An approaching driver leaves their high beams on. Where should you look?",
+        "choices": [
+            "Toward the right side of the road.",
+            "Directly into their headlights.",
+            "At the center of their windshield.",
+            "Away from the road entirely."
+        ],
+        "answer": 0,
+        "explanation": "Looking toward the right side helps reduce distraction from bright headlights. (Guide 5.6)",
+        "sources": [
+            "5.6"
+        ]
+    },
+    {
+        "question": "Should you wear sunglasses while driving at night?",
+        "choices": [
+            "No. Tinted lenses reduce your vision.",
+            "Yes, on all roads.",
+            "Yes, if streetlights are present.",
+            "Only on unfamiliar roads."
+        ],
+        "answer": 0,
+        "explanation": "The guide advises against sunglasses or colored lenses at night or on overcast days. (Guide 5.6)",
+        "sources": [
+            "5.6"
+        ]
+    },
+    {
+        "question": "At night on an unfamiliar road, your following distance should:",
+        "choices": [
+            "Increase.",
+            "Decrease.",
+            "Depend only on the posted speed limit.",
+            "Be as short as possible."
+        ],
+        "answer": 0,
+        "explanation": "Increase following distance for night driving and unfamiliar roadways. (Guide 5.6)",
+        "sources": [
+            "5.6"
+        ]
+    },
+    {
+        "question": "A large truck ahead is making a turn. You should:",
+        "choices": [
+            "Wait until its turn is complete before passing.",
+            "Pass on the inside of its turn.",
+            "Squeeze between the truck and the curb.",
+            "Assume it needs only one lane."
+        ],
+        "answer": 0,
+        "explanation": "Large vehicles may need more than one lane to turn. Passing during the turn can cause a collision. (Guide 4.4)",
+        "sources": [
+            "4.4"
+        ]
+    },
+    {
+        "question": "Why should you avoid following a snowplow too closely?",
+        "choices": [
+            "Blowing snow can sharply reduce visibility.",
+            "Snowplows always stop at every driveway.",
+            "Snowplows cannot use public roads.",
+            "Your headlights will turn off."
+        ],
+        "answer": 0,
+        "explanation": "Snow removal equipment can throw snow that creates blizzard-like conditions behind it. (Guide 4.4)",
+        "sources": [
+            "4.4"
+        ]
+    },
+    {
+        "question": "When a school bus displays yellow warning lights, you should:",
+        "choices": [
+            "Use caution and slow down.",
+            "Speed up to pass before it stops.",
+            "Ignore them until you see children.",
+            "Assume the bus has finished loading."
+        ],
+        "answer": 0,
+        "explanation": "School bus lights work like traffic signals: yellow means caution or slow down. (Guide 4.2)",
+        "sources": [
+            "4.2"
+        ]
+    },
+    {
+        "question": "A pedestrian with a guide dog is crossing the street. You should:",
+        "choices": [
+            "Wait until they have completely crossed.",
+            "Go as soon as they clear your lane.",
+            "Honk to guide them across.",
+            "Drive around them in the opposite lane."
+        ],
+        "answer": 0,
+        "explanation": "Wait until pedestrians using a cane, wheelchair, or service animal completely cross the street. (Guide 4.1)",
+        "sources": [
+            "4.1"
+        ]
+    },
+    {
+        "question": "Should you honk at a pedestrian using a service animal?",
+        "choices": [
+            "No. It could confuse or frighten them or the animal.",
+            "Yes, to make them cross faster.",
+            "Yes, whenever they face away from you.",
+            "Only while passing them."
+        ],
+        "answer": 0,
+        "explanation": "The guide says not to honk because it could confuse or frighten the service animal or pedestrian. (Guide 4.1)",
+        "sources": [
+            "4.1"
+        ]
+    },
+    {
+        "question": "Where may you enter a Washington beach that permits driving?",
+        "choices": [
+            "Through marked beach approaches.",
+            "Across any sand dune.",
+            "Through any gap in a barrier.",
+            "Anywhere pedestrians enter."
+        ],
+        "answer": 0,
+        "explanation": "Use only marked beach approaches and drive only on hard-packed sand. (Guide 4.20)",
+        "sources": [
+            "4.20"
+        ]
+    },
+    {
+        "question": "On a beach where driving is permitted, you should drive only on:",
+        "choices": [
+            "Hard-packed sand.",
+            "Loose dunes.",
+            "Vegetated areas.",
+            "Any surface above the waterline."
+        ],
+        "answer": 0,
+        "explanation": "The guide limits beach driving to hard-packed sand and says to watch for prohibiting signs. (Guide 4.20)",
+        "sources": [
+            "4.20"
+        ]
+    },
+    {
+        "question": "On most Washington ferries, bicyclists receive:",
+        "choices": [
+            "Priority loading and a waiting area in front of motor vehicles.",
+            "A requirement to wait behind every motor vehicle.",
+            "Permission to ignore all road rules.",
+            "A ban on passing vehicles in the holding lane."
+        ],
+        "answer": 0,
+        "explanation": "Bicyclists receive priority loading on most ferries and may proceed past vehicles in the ferry holding lane. (Guide 4.20)",
+        "sources": [
+            "4.20"
+        ]
+    },
+    {
+        "question": "How do airbags and seat belts protect you?",
+        "choices": [
+            "They work together; you still need a seat belt.",
+            "An airbag replaces the need for a seat belt.",
+            "Seat belts prevent airbags from working.",
+            "Airbags protect only unbelted occupants."
+        ],
+        "answer": 0,
+        "explanation": "Without a seat belt, airbag deployment can cause serious injury or death. (Guide 2.6)",
+        "sources": [
+            "2.6"
+        ]
+    },
+    {
+        "question": "Before driving, a seat belt should be:",
+        "choices": [
+            "Untwisted, with the lap belt on your upper thigh.",
+            "Twisted to make it tighter.",
+            "Placed across your stomach.",
+            "Worn only over one shoulder."
+        ],
+        "answer": 0,
+        "explanation": "The guide says the belt should not be twisted and the lap belt should rest on your upper thigh. (Guide 2.6)",
+        "sources": [
+            "2.6"
+        ]
+    },
+    {
+        "question": "What is one benefit of hand-to-hand steering?",
+        "choices": [
+            "Your hands stay on their own sides, away from the airbag area.",
+            "You can let go of the wheel during a turn.",
+            "It eliminates the need to watch the road.",
+            "It requires crossing your arms over the wheel."
+        ],
+        "answer": 0,
+        "explanation": "Hand-to-hand steering keeps both hands on the wheel and your arms away from the airbag area. (Guide 2.7)",
+        "sources": [
+            "2.7"
+        ]
+    },
+    {
+        "question": "After spotting a hazard that requires a change, you should also:",
+        "choices": [
+            "Check what is happening behind you.",
+            "Look only at the hazard.",
+            "Brake hard without checking traffic.",
+            "Assume following drivers will stop."
+        ],
+        "answer": 0,
+        "explanation": "Traffic behind you can affect your decisions when responding to a hazard. (Guide 5.0)",
+        "sources": [
+            "5.0"
+        ]
+    },
+    {
+        "question": "Several hazards appear at once. Your responsibility is to:",
+        "choices": [
+            "Determine which needs the most urgent response.",
+            "Respond only to the largest object.",
+            "Ignore moving hazards.",
+            "Maintain speed until they disappear."
+        ],
+        "answer": 0,
+        "explanation": "Hazards may be moving or stationary, and multiple hazards can require you to prioritize your response. (Guide 5.0)",
+        "sources": [
+            "5.0"
+        ]
+    },
+    {
+        "question": "Which sequence does the guide recommend for managing hazards?",
+        "choices": [
+            "Plan, communicate, check, execute, evaluate.",
+            "Execute, check, plan, communicate, evaluate.",
+            "Communicate, execute, evaluate, plan, check.",
+            "Plan, execute, communicate, evaluate, check."
+        ],
+        "answer": 0,
+        "explanation": "A reliable hazard routine helps you make changes safely and learn from the result. (Guide 5.0)",
+        "sources": [
+            "5.0"
+        ]
     },
 ];
