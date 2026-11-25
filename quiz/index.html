@@ -307,7 +307,7 @@
 
     <div class="wrap">
         <div class="pane">
-            <iframe id="pane" src="pane.html" title="Question pane"></iframe>
+            <iframe id="pane" data-src="pane.html" title="Question pane"></iframe>
         </div>
         <footer>
             Study the official <a href="https://dol.wa.gov/media/pdf/4745/driver-guidepdf/download?inline"
@@ -618,6 +618,8 @@
         // Direct test links retain the question-count shortcut.
         if (Number.isSafeInteger(count) && count > 0) state.phase = "quiz";
         renderHeader();
+        // Start loading the pane after its ready-message listener is registered.
+        frame.src = frame.dataset.src;
     </script>
 </body>
 
